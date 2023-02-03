@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,10 +24,35 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
+Route::get('/admin', function () {
+    return view('admin');
+})->middleware(['auth', 'verified'])->name('admin');
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    
+    // shop
+    Route::get('/shop/grid', [DashboardController::class, 'shopGrid'])->name('shop-grid');
+
+    // cart
+    Route::get('/shop/cart', [DashboardController::class, 'shopCart'])->name('cart');
+
+    // checkout
+    Route::get('/checkout', [DashboardController::class, 'checkout'])->name('checkout');
+
+    // contact
+    Route::get('/contact', [DashboardController::class, 'contact'])->name('contact');
+
+    //Author croud
+    Route::get('/author', [AuthorController::class, 'index'])->name('new.author');
+    Route::post('/store/author', [AuthorController::class, 'store'])->name('store.author');
+    Route::get('/show/author', [AuthorController::class, 'showAuthor'])->name('show.author');
+    Route::get('/edit/author/{id}', [AuthorController::class, 'editAuthor'])->name('edit.author');
+    Route::post('/update', [AuthorController::class, 'update'])->name('update.author');
+    Route::delete('/delete/{id}', [AuthorController::class, 'destroy'])->name('delete.author');
+    
 });
 
 require __DIR__.'/auth.php';

@@ -1,17 +1,116 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('master')
+@section('content')
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    {{ __("You're logged in!") }}
+    <!-- Humberger Begin -->
+    <div class="humberger__menu__overlay"></div>
+    <div class="humberger__menu__wrapper">
+        <div class="humberger__menu__logo">
+            <a href="#"><img src="img/logo.png" alt=""></a>
+        </div>
+        <div class="humberger__menu__cart">
+            <ul>
+                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+            </ul>
+            <div class="header__cart__price">item: <span>$150.00</span></div>
+        </div>
+        <div class="humberger__menu__widget">
+            <div class="header__top__right__language">
+                <img src="img/language.png" alt="">
+                <div>English</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="#">English</a></li>
+                    <li><a href="#">Bangla</a></li>
+                </ul>
+            </div>
+            <div class="header__top__right__user">
+                <i class="fa fa-user"></i>
+                <div>{{ Auth::user()->name }}</div>
+                <span class="arrow_carrot-down"></span>
+                <ul>
+                    <li><a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
+                    <li>
+                        {{-- <a href="{{ route('logout') }}">{{ __('Log Out') }}</a> --}}
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <x-dropdown-link :href="route('logout')"
+                                    onclick="event.preventDefault();
+                                                this.closest('form').submit();">
+                                {{ __('Log Out') }}
+                            </x-dropdown-link>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <nav class="humberger__menu__nav mobile-menu">
+            <ul>
+                <li class="active"><a href="{{'/dashboard'}}">Home</a></li>
+                <li><a href="./shop-grid.html">Shop</a></li>
+                <li><a href="#">Pages</a>
+                    <ul class="header__menu__dropdown">
+                        <li><a href="./shop-details.html">Shop Details</a></li>
+                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
+                        <li><a href="./checkout.html">Check Out</a></li>
+                        <li><a href="./blog-details.html">Blog Details</a></li>
+                    </ul>
+                </li>
+                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <div id="mobile-menu-wrap"></div>
+        <div class="header__top__right__social">
+            <a href="#"><i class="fa fa-facebook"></i></a>
+            <a href="#"><i class="fa fa-twitter"></i></a>
+            <a href="#"><i class="fa fa-linkedin"></i></a>
+            <a href="#"><i class="fa fa-pinterest-p"></i></a>
+        </div>
+        <div class="humberger__menu__contact">
+            <ul>
+                <li><i class="fa fa-envelope"></i> bms@gmail.com</li>
+                <li>Free Shipping for all Order of $99</li>
+            </ul>
+        </div>
+    </div>
+    <!-- Humberger End -->
+    <!-- Hero Section Begin -->
+    @include('partials.hero');
+    <!-- Hero Section End -->
+
+    <!-- Categories Section Begin -->
+    @include('partials.categories');
+    <!-- Categories Section End -->
+
+    <!-- Featured Section Begin -->
+    @include('partials.featured');
+    <!-- Featured Section End -->
+
+    <!-- Banner Begin -->
+    <div class="banner">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="img/banner/banner-1.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="banner__pic">
+                        <img src="img/banner/banner-2.jpg" alt="">
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
+    <!-- Banner End -->
+
+    <!-- Latest Product Section Begin -->
+    @include('partials.latest');
+    <!-- Latest Product Section End -->
+@endsection
