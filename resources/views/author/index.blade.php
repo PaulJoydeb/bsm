@@ -25,14 +25,6 @@
                         <h6 class="m-0 font-weight-bold text-primary">Add New Author</h6>
                     </div>
                     <div class="card-body">
-                        <p>An author is 'the person who originated or gave existence to anything" and whose authorship
-                            determines responsibility for what was created.</p>
-                        <p>Typically, the first owner of a copyright is the person who created the work, i.e. the author. If
-                            more than one person created the work (i.e., multiple authors), then a case of joint authorship
-                            takes place. Copyright laws differ around the world. The United States Copyright Office, for
-                            example, defines copyright as "a form of protection provided by the laws of the United States
-                            (title 17, U.S. Code) to authors of 'original works of authorship.</p>
-
                         <form action="{{ route('store.author') }}" method="POST">
                             @csrf
                             <div class="row mb-4">

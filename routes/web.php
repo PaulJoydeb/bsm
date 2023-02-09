@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -45,14 +46,22 @@ Route::middleware('auth')->group(function () {
     // contact
     Route::get('/contact', [DashboardController::class, 'contact'])->name('contact');
 
-    //Author croud
+    //Author CRUD
     Route::get('/author', [AuthorController::class, 'index'])->name('new.author');
     Route::post('/store/author', [AuthorController::class, 'store'])->name('store.author');
     Route::get('/show/author', [AuthorController::class, 'showAuthor'])->name('show.author');
     Route::get('/edit/author/{id}', [AuthorController::class, 'editAuthor'])->name('edit.author');
     Route::post('/update', [AuthorController::class, 'update'])->name('update.author');
     Route::delete('/delete/{id}', [AuthorController::class, 'destroy'])->name('delete.author');
-    
+
+    // Category CRUD
+    Route::get('/category', [CategoriesController::class, 'index'])->name('new.category');
+    Route::post('/store/category', [CategoriesController::class, 'store'])->name('store.category');
+    Route::get('/show/category', [CategoriesController::class, 'showCategory'])->name('show.category');
+    Route::get('/edit/category/{id}', [CategoriesController::class, 'edit'])->name('edit.category');
+    Route::post('/update', [CategoriesController::class, 'update'])->name('update.category');
+    Route::delete('/delete/{id}', [CategoriesController::class, 'destroy'])->name('delete.category');
+
 });
 
 require __DIR__.'/auth.php';
