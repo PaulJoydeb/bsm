@@ -78,7 +78,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                         aria-expanded="true" aria-controls="collapseTwo">
-                        <i class="fas fa-fw fa-cog"></i>
+                        <i class="fa fa-users" aria-hidden="true"></i>
                         <span>Authors</span>
                     </a>
                     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
@@ -94,7 +94,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategory"
                         aria-expanded="true" aria-controls="collapseCategory">
-                        <i class="fas fa-fw fa-cog"></i>
+                        <i class="fa fa-th-list" aria-hidden="true"></i>
                         <span>Categories</span>
                     </a>
                     <div id="collapseCategory" class="collapse" aria-labelledby="headingTwo"
@@ -111,7 +111,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseAddBook"
                         aria-expanded="true" aria-controls="collapseAddBook">
-                        <i class="fas fa-fw fa-cog"></i>
+                        <i class="fa fa-book" aria-hidden="true"></i>
                         <span>Books</span>
                     </a>
                     <div id="collapseAddBook" class="collapse" aria-labelledby="headingTwo"
@@ -128,7 +128,7 @@
                 <li class="nav-item">
                     <a class="nav-link collapsed" href="#" data-toggle="collapse"
                         data-target="#collapseDiscount" aria-expanded="true" aria-controls="collapseDiscount">
-                        <i class="fas fa-fw fa-cog"></i>
+                        <i class="fa fa-calculator" aria-hidden="true"></i>
                         <span>Discounts</span>
                     </a>
                     <div id="collapseDiscount" class="collapse" aria-labelledby="headingTwo"
@@ -159,12 +159,7 @@
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Login Screens:</h6>
-                            <a class="collapse-item" href="login.html">Login</a>
-                            <a class="collapse-item" href="register.html">Register</a>
-                            <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
                             <div class="collapse-divider"></div>
-                            <h6 class="collapse-header">Other Pages:</h6>
                             <a class="collapse-item" href="404.html">404 Page</a>
                             <a class="collapse-item" href="blank.html">Blank Page</a>
                         </div>

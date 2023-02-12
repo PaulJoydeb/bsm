@@ -75,7 +75,7 @@
                             </div>
 
                             <!-- Submit button -->
-                            <button type="submit" class="btn btn-primary btn-block mb-4">Save Author</button>
+                            <button type="submit" class="btn btn-primary btn-block mb-4">Save Book</button>
                         </form>
                     </div>
                 </div>
