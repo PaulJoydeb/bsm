@@ -45,7 +45,7 @@
                                             <option value="canada">CANADA [CA]</option>
                                             <option value="japan">JAPAN [JP]</option>
                                         </select>
-                                        <label class="form-label" for="form6Example2 ">Category Type</label>
+                                        <label class="form-label" for="form6Example2 ">County Type</label>
                                     </div>
                                 </div>
                             </div>

@@ -26,10 +26,16 @@
                 <div class="hero__search">
                     <div class="hero__search__form">
                         <form action="#">
-                            <div class="hero__search__categories">
-                                All Categories
-                                <span class="arrow_carrot-down"></span>
-                            </div>
+                            {{-- <div class="hero__search__categories"> --}}
+                            {{-- All Categories
+                                <span class="arrow_carrot-down"></span> --}}
+                            <select name="categories" id="categories" class="border-0 rounded-0">
+                                <option value="" selected>All Categories</option>
+                                @foreach ($categories as $categorie)
+                                    <option value="">{{ $categorie->name }}</option>
+                                @endforeach
+                            </select>
+                            {{-- </div> --}}
                             <input type="text" placeholder="What do yo u need?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
@@ -39,7 +45,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                            <h5>+00 11.188.888</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>

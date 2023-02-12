@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
@@ -21,9 +22,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/dashboard', function () {
+//     return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/dashboard', [DashboardController::class, 'index'
+])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('/admin', function () {
     return view('admin');
@@ -60,7 +64,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/show/category', [CategoriesController::class, 'showCategory'])->name('show.category');
     Route::get('/edit/category/{id}', [CategoriesController::class, 'edit'])->name('edit.category');
     Route::post('/update', [CategoriesController::class, 'update'])->name('update.category');
-    Route::delete('/delete/{id}', [CategoriesController::class, 'destroy'])->name('delete.category');
+    Route::delete('/cat/delete/{id}', [CategoriesController::class, 'destroy'])->name('delete.category');
+
+    // Book CRUD
+    Route::get('/book', [BooksController::class, 'index'])->name('book');
+    Route::post('/store/book', [BooksController::class, 'store'])->name('store.book');
+    
 
 });
 

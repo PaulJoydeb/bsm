@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class BooksController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +15,9 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $authors = Author::get();
         $categories = Categorie::get();
-        return view('dashboard', compact('categories'));
+        return view('book.index', compact('authors','categories'));
     }
 
     /**
@@ -36,6 +38,7 @@ class DashboardController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->all());
         //
     }
 
@@ -82,25 +85,5 @@ class DashboardController extends Controller
     public function destroy($id)
     {
         //
-    }
-
-    public function shopGrid()
-    {
-        return view('shop.shop_grid');
-    }
-
-    public function shopCart()
-    {
-        return view('cart.index');
-    }
-
-    public function checkout()
-    {
-        return view('checkout.index');
-    }
-
-    public function contact()
-    {
-        return view('about.contact');
     }
 }
