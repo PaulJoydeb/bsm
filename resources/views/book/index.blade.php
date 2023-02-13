@@ -45,32 +45,38 @@
                             <div class="row mb-4">
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select name="category_id" id="form6Example2" class="form-control">
+                                        <select name="category_id" id="form6Example3" class="form-control">
                                             <option selected>--CHOICE--</option>
                                             @foreach ($categories as $category)
                                                 <option value="{{ $category->id }}">{{ $category->name }}</option>
                                             @endforeach
                                         </select>
-                                        <label class="form-label" for="form6Example2 ">Choice Category</label>
+                                        <label class="form-label" for="form6Example3">Choice Category</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-outline">
-                                        <select name="author_id" id="form6Example2" class="form-control">
+                                        <select name="author_id" id="form6Example4" class="form-control">
                                             <option selected>--CHOICE--</option>
                                             @foreach ($authors as $author)
                                                 <option value="{{ $author->id }}">{{ $author->name }}</option>
                                             @endforeach
                                         </select>
-                                        <label class="form-label" for="form6Example2 ">Choice Author</label>
+                                        <label class="form-label" for="form6Example4">Choice Author</label>
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input type="number" id="form6Example5" class="form-control" name="total_books"  min="0" />
+                                        <label class="form-label" for="form6Example5">Total Books</label>
                                     </div>
                                 </div>
                             </div>
 
                             <!-- Message input -->
                             <div class="form-outline mb-4">
-                                <textarea class="form-control" id="form6Example" rows="4" name="about"></textarea>
-                                <label class="form-label" for="form6Example3">Additional Description
+                                <textarea class="form-control" id="form6Example6" rows="4" name="about"></textarea>
+                                <label class="form-label" for="form6Example6">Additional Description
                                     (Optional)</label>
                             </div>
 

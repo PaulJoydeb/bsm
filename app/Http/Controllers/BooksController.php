@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Book;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -38,8 +39,23 @@ class BooksController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
-        //
+        $request->validate([
+            'title' => 'required',
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
+
+        $image_path = $request->file('image')->store('image/book', 'public');
+
+        $book = new Book();
+        $book->title = $request->title;
+        $book->description = $request->description;
+        $book->image = $image_path;
+        $book->category_id = $request->category_id;
+        $book->author_id = $request->author_id;
+        $book->total_books = $request->total_books;
+        $book->save();
+        session()->flash('success', 'Image Upload successfully');
+        return redirect()->route('book');
     }
 
     /**
