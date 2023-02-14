@@ -75,7 +75,7 @@
 
                             <!-- Message input -->
                             <div class="form-outline mb-4">
-                                <textarea class="form-control" id="form6Example6" rows="4" name="about"></textarea>
+                                <textarea class="form-control" id="form6Example6" rows="4" name="description"></textarea>
                                 <label class="form-label" for="form6Example6">Additional Description
                                     (Optional)</label>
                             </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Author;
+use App\Models\Book;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -123,7 +124,10 @@ class AuthorController extends Controller
      */
     public function destroy($id)
     {
-        Author::where('id', $id)->delete();
+        $exists = Book::where('author_id', $id)->exists();
+        if ($exists == false) {
+            Author::where('id', $id)->delete();
+        }        
         return redirect()->route('show.author');
     }
 }

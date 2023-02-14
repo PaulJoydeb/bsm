@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -114,7 +115,10 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        Categorie::where('id', $id)->delete();
+        $exists = Book::where('category_id', $id)->exists();
+        if ($exists == false) {
+            Categorie::where('id', $id)->delete();
+        }
         return redirect()->route('show.category');
     }
 }

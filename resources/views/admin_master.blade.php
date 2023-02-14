@@ -119,7 +119,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Custom Books:</h6>
                             <a class="collapse-item" href="{{ route('book') }}">New Book</a>
-                            <a class="collapse-item" href="">List Book</a>
+                            <a class="collapse-item" href="{{ route('show.book') }}">List Book</a>
                         </div>
                     </div>
                 </li>

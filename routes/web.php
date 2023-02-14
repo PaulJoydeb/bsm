@@ -69,7 +69,10 @@ Route::middleware('auth')->group(function () {
     // Book CRUD
     Route::get('/book', [BooksController::class, 'index'])->name('book');
     Route::post('/store/book', [BooksController::class, 'store'])->name('store.book');
-    
+    Route::get('/show/book', [BooksController::class, 'showBook'])->name('show.book');
+    Route::get('/edit/book/{id}', [BooksController::class, 'edit'])->name('edit.book');
+    Route::post('/update', [BooksController::class, 'update'])->name('update.book');
+    Route::delete('/book/delete/{id}', [BooksController::class, 'destroy'])->name('delete.book');
 
 });
 
