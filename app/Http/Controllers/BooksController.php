@@ -6,6 +6,7 @@ use App\Models\Author;
 use App\Models\Book;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Intervention\Image\ImageManagerStatic as Image;
 
@@ -97,7 +98,10 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        //
+        $book = Book::with('cateogry', 'author')->findOrFail($id);
+        $categories = Categorie::get();
+        $authors = Author::get();
+        return view('book.edit_book', compact('book', 'categories', 'authors'));
     }
 
     /**
@@ -107,9 +111,50 @@ class BooksController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        try {
+            $request->validate([
+                'title' => 'required',
+            ]);
+
+            if ($request->image) {
+
+                $book = Book::findOrFail($request->id);
+                $path_thumb = public_path() . "/storage/" . $book->image;
+                $org_path = str_replace('book_thumbnail', 'book', $book->image);
+                $path_org = public_path() . "/storage/" . $org_path;
+                if (!empty($path_thumb) && !empty($path_org)) {
+                    unlink($path_thumb);
+                    unlink($path_org);
+                }
+
+                $image = $request->file('image');
+                $input['image'] = time() . '.' . $image->getClientOriginalExtension();
+
+                $destinationPath = public_path('storage/image/book_thumbnail');
+                $imgFile = Image::make($image->getRealPath());
+                $imgFile->resize(270, 270)->save($destinationPath . '/' . $input['image']);
+                $destinationPath = public_path('storage/image/book');
+                $image->move($destinationPath, $input['image']);
+
+                $image_path = 'image/book_thumbnail/' . $input['image'];
+            }
+
+            $book = Book::findOrFail($request->id);
+            $book->title = $request->title;
+            $book->description = $request->description;
+            if ($request->image) {
+                $book->image = $image_path;
+            }
+            $book->category_id = $request->category_id;
+            $book->author_id = $request->author_id;
+            $book->total_books = $request->total_books;
+            $book->save();
+        } catch (\Throwable $ex) {
+            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+        }
+        return redirect()->route('show.book');
     }
 
     /**
@@ -121,9 +166,9 @@ class BooksController extends Controller
     public function destroy($id)
     {
         $book = Book::findOrFail($id);
-        $path_thumb = public_path()."/storage/".$book->image;
+        $path_thumb = public_path() . "/storage/" . $book->image;
         $org_path = str_replace('book_thumbnail', 'book', $book->image);
-        $path_org = public_path()."/storage/".$org_path;
+        $path_org = public_path() . "/storage/" . $org_path;
         if (!empty($path_thumb) && !empty($path_org)) {
             unlink($path_thumb);
             unlink($path_org);
