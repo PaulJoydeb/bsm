@@ -4,7 +4,7 @@
     <div class="container-fluid">
 
         <!-- Page Heading -->
-        <h1 class="h3 mb-4 text-gray-800">Books/New Book</h1>
+        <h1 class="h3 mb-4 text-gray-800">Books/Edit Book</h1>
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -22,7 +22,7 @@
                 <!-- Circle Buttons -->
                 <div class="card shadow mb-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">Add New Book</h6>
+                        <h6 class="m-0 font-weight-bold text-primary">Edit Book</h6>
                     </div>
                     <div class="card-body">
                         <form action="{{ route('update.book') }}" method="POST" enctype="multipart/form-data">
