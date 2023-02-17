@@ -44,7 +44,7 @@
                                     <td> {{ $book->cateogry ? $book->cateogry->name : ''}} </td>
                                     <td> {{ $book->author ? $book->author->name : ''}} </td>
                                     <td> {{ $book->total_books }} </td>
-                                    <td> {{ $book->price->price }} </td>
+                                    <td> {{ $book->price ? $book->price->price ""}} </td>
                                     <td>
                                         <a class="btn btn-primary"
                                             href="{{ route('edit.book', ['id' => $book->id]) }}">Edit</a>
