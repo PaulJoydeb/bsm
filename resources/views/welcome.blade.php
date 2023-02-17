@@ -139,25 +139,25 @@
 
                             @if (Route::has('login'))
                                 @auth
-                                <div class="header__top__right__user">
-                                    <i class="fa fa-user"></i>
-                                    <div>{{ Auth::user()->name }}</div>
-                                    <span class="arrow_carrot-down"></span>
-                                    <ul>
-                                        <li><a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
-                                        <li>
-                                            {{-- <a href="{{ route('logout') }}">{{ __('Log Out') }}</a> --}}
-                                            <form method="POST" action="{{ route('logout') }}">
-                                                @csrf
-                                                <x-dropdown-link :href="route('logout')"
+                                    <div class="header__top__right__user">
+                                        <i class="fa fa-user"></i>
+                                        <div>{{ Auth::user()->name }}</div>
+                                        <span class="arrow_carrot-down"></span>
+                                        <ul>
+                                            <li><a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
+                                            <li>
+                                                {{-- <a href="{{ route('logout') }}">{{ __('Log Out') }}</a> --}}
+                                                <form method="POST" action="{{ route('logout') }}">
+                                                    @csrf
+                                                    <x-dropdown-link :href="route('logout')"
                                                         onclick="event.preventDefault();
                                                                     this.closest('form').submit();">
-                                                    {{ __('Log Out') }}
-                                                </x-dropdown-link>
-                                            </form>
-                                        </li>
-                                    </ul>
-                                </div>
+                                                        {{ __('Log Out') }}
+                                                    </x-dropdown-link>
+                                                </form>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 @else
                                     <div class="header__top__right__auth">
                                         <a href="{{ route('login') }}"><i class="fa fa-user"></i> Log in</a>
@@ -248,10 +248,12 @@
                     <div class="hero__search">
                         <div class="hero__search__form">
                             <form action="#">
-                                <div class="hero__search__categories">
-                                    All Categories
-                                    <span class="arrow_carrot-down"></span>
-                                </div>
+                                <select name="categories" id="categories" class="border-0 rounded-0">
+                                    <option value="" selected>All Categories</option>
+                                    @foreach ($categories as $categorie)
+                                        <option value="">{{ $categorie->name }}</option>
+                                    @endforeach
+                                </select>
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
@@ -347,21 +349,23 @@
                 </div>
             </div>
             <div class="row featured__filter">
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                @foreach ($books as $book)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="storage/{{ $book->image }}">
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">{{ $book->title }}</a></h6>
+                                <h5>৳{{ $book->price->price }}</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
                 {{-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">

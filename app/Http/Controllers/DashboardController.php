@@ -20,6 +20,13 @@ class DashboardController extends Controller
         return view('dashboard', compact('categories', 'books'));
     }
 
+    public function home()
+    {
+        $categories = Categorie::get();
+        $books = Book::with('price')->get();
+        return view('welcome', compact('categories', 'books'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *
