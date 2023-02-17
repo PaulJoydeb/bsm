@@ -55,7 +55,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store/author', [AuthorController::class, 'store'])->name('store.author');
     Route::get('/show/author', [AuthorController::class, 'showAuthor'])->name('show.author');
     Route::get('/edit/author/{id}', [AuthorController::class, 'editAuthor'])->name('edit.author');
-    Route::post('/update', [AuthorController::class, 'update'])->name('update.author');
+    Route::post('/update/author', [AuthorController::class, 'update'])->name('update.author');
     Route::delete('/delete/{id}', [AuthorController::class, 'destroy'])->name('delete.author');
 
     // Category CRUD
@@ -63,7 +63,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store/category', [CategoriesController::class, 'store'])->name('store.category');
     Route::get('/show/category', [CategoriesController::class, 'showCategory'])->name('show.category');
     Route::get('/edit/category/{id}', [CategoriesController::class, 'edit'])->name('edit.category');
-    Route::post('/update', [CategoriesController::class, 'update'])->name('update.category');
+    Route::post('/update/category', [CategoriesController::class, 'update'])->name('update.category');
     Route::delete('/cat/delete/{id}', [CategoriesController::class, 'destroy'])->name('delete.category');
 
     // Book CRUD
@@ -71,7 +71,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/store/book', [BooksController::class, 'store'])->name('store.book');
     Route::get('/show/book', [BooksController::class, 'showBook'])->name('show.book');
     Route::get('/edit/book/{id}', [BooksController::class, 'edit'])->name('edit.book');
-    Route::post('/update', [BooksController::class, 'update'])->name('update.book');
+    Route::post('/update/book', [BooksController::class, 'update'])->name('update.book');
     Route::delete('/book/delete/{id}', [BooksController::class, 'destroy'])->name('delete.book');
 
 });
