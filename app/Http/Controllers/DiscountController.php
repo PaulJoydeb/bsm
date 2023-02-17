@@ -94,10 +94,7 @@ class DiscountController extends Controller
             'book_aid' => 'required',
             'total_discount' => 'required',
         ]);
-        $book_id = intval(preg_replace('/[^0-9]+/', '', $request->book_aid), 10);
         $discount = Discount::findOrFail($request->id);
-        $discount->book_id = $book_id;
-        $discount->book_aid = $request->book_aid;
         $discount->total_discount = $request->total_discount;
         $discount->save();
         return redirect()->route('show.discount');
