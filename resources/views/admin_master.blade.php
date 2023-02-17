@@ -135,8 +135,8 @@
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <h6 class="collapse-header">Custom Discounts:</h6>
-                            <a class="collapse-item" href="">New Discrount</a>
-                            <a class="collapse-item" href="">List Discrount</a>
+                            <a class="collapse-item" href="{{ route('discount') }}">New Discrount</a>
+                            <a class="collapse-item" href="{{ route('show.discount') }}">List Discrount</a>
                         </div>
                     </div>
                 </li>

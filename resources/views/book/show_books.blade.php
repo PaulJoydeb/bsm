@@ -23,7 +23,7 @@
                     <table class="table table-bordered text-center" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Book ID</th>
+                                <th>Book AID</th>
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Category</th>

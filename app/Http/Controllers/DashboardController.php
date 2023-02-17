@@ -16,7 +16,7 @@ class DashboardController extends Controller
     public function index()
     {
         $categories = Categorie::get();
-        $books = Book::with('price')->get();
+        $books = Book::with('price', 'discount')->get();
         return view('dashboard', compact('categories', 'books'));
     }
 

@@ -117,7 +117,7 @@ class CategoriesController extends Controller
     {
         $exists = Book::where('category_id', $id)->exists();
         if ($exists == false) {
-            Categorie::where('id', $id)->delete();
+            Categorie::findOrFail($id)->delete();
         }
         return redirect()->route('show.category');
     }

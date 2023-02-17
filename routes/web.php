@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -71,6 +72,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit/book/{id}', [BooksController::class, 'edit'])->name('edit.book');
     Route::post('/update/book', [BooksController::class, 'update'])->name('update.book');
     Route::delete('/book/delete/{id}', [BooksController::class, 'destroy'])->name('delete.book');
+
+    //Discount CRUD
+    Route::get('/discount', [DiscountController::class, 'index'])->name('discount');
+    Route::post('/store/discount', [DiscountController::class, 'store'])->name('store.discount');
+    Route::get('/show/discount', [DiscountController::class, 'showDiscount'])->name('show.discount');
+    Route::get('/edit/discount/{id}', [DiscountController::class, 'edit'])->name('edit.discount');
+    Route::post('/update/discount', [DiscountController::class, 'update'])->name('update.discount');
+    Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy'])->name('delete.discount');
 
 });
 

@@ -20,7 +20,7 @@
             @foreach ($books as $book)
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="storage/{{$book->image}}">
+                        <div class="featured__item__pic set-bg" data-setbg="storage/{{ $book->image }}">
                             <ul class="featured__item__pic__hover">
                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
@@ -29,7 +29,14 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">{{ $book->title }}</a></h6>
-                            <h5>৳{{ $book->price ? $book->price->price : "" }}</h5>
+                            <?php
+                            $total_price = $book->price ? $book->price->price : 0;
+                            $discount_percentage = $book->discount ? $book->discount->total_discount : 0;
+                            $new_price = ($total_price / 100) * $discount_percentage;
+                            $current = $total_price - $new_price;
+                            $price = $book->price ? $book->price->price : 0;
+                            ?>
+                            <h5>৳{!! (!empty($discount_percentage) && $discount_percentage > 0) ? '<s class="text-danger">'.$price.'</s> '. $current : $price !!}</h5>
                         </div>
                     </div>
                 </div>

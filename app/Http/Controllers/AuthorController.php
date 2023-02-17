@@ -126,7 +126,7 @@ class AuthorController extends Controller
     {
         $exists = Book::where('author_id', $id)->exists();
         if ($exists == false) {
-            Author::where('id', $id)->delete();
+            Author::findOrFail($id)->delete();
         }        
         return redirect()->route('show.author');
     }

@@ -23,4 +23,9 @@ class Book extends Model
     {
         return $this->hasOne(Price::class, 'book_id');
     }
+
+    public function discount()
+    {
+        return $this->hasOne(Discount::class, 'book_id');
+    }
 }
