@@ -160,11 +160,21 @@ class BooksController extends Controller
             $book->total_books = $request->total_books;
             $book->save();
 
-            $price = Price::findOrFail($request->price_id);
-            $price->book_id = $request->id;
-            $price->price = $request->price;
-            $price->currency = 'BDT';
-            $price->save();
+            if ($request->price_id) {
+                $price = Price::findOrFail($request->price_id);
+                $price->book_id = $request->id;
+                $price->price = $request->price;
+                $price->currency = 'BDT';
+                $price->save();
+            } else {
+                $price = new Price();
+                $price->book_id = $request->id;
+                $price->price = $request->price;
+                $price->currency = 'BDT';
+                $price->save();
+            }
+
+            
 
         } catch (\Throwable $ex) {
             return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
