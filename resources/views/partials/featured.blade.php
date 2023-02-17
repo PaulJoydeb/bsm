@@ -29,7 +29,7 @@
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="#">{{ $book->title }}</a></h6>
-                            <h5>৳{{ $book->price->price }}</h5>
+                            <h5>৳{{ $book->price ? $book->price->price : "" }}</h5>
                         </div>
                     </div>
                 </div>
