@@ -32,7 +32,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <input type="text" id="form6Example1" class="form-control"
-                                            value="{{ $discount->book_aid }}" name="book_aid" />
+                                            value="{{ $discount->book_aid }}" name="book_aid" readonly/>
                                         <label class="form-label" for="form6Example1" name="surname">Book AID (Authenticate
                                             ID)</label>
                                     </div>
