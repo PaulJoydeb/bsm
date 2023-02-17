@@ -18,4 +18,9 @@ class Book extends Model
     {
         return $this->hasOne(Categorie::class, 'id', 'category_id');
     }
+
+    public function price()
+    {
+        return $this->hasOne(Price::class, 'book_id');
+    }
 }

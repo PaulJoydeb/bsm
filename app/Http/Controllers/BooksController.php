@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Categorie;
+use App\Models\Price;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
@@ -67,6 +68,13 @@ class BooksController extends Controller
             $book->author_id = $request->author_id;
             $book->total_books = $request->total_books;
             $book->save();
+
+            $price = new Price();
+            $price->book_id = $book->id;
+            $price->price = $request->price;
+            $price->currency = 'BDT';
+            $price->save();
+
         } catch (\Throwable $ex) {
             return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
         }
@@ -98,7 +106,7 @@ class BooksController extends Controller
      */
     public function edit($id)
     {
-        $book = Book::with('cateogry', 'author')->findOrFail($id);
+        $book = Book::with('cateogry', 'author', 'price')->findOrFail($id);
         $categories = Categorie::get();
         $authors = Author::get();
         return view('book.edit_book', compact('book', 'categories', 'authors'));
@@ -151,6 +159,13 @@ class BooksController extends Controller
             $book->author_id = $request->author_id;
             $book->total_books = $request->total_books;
             $book->save();
+
+            $price = Price::findOrFail($request->price_id);
+            $price->book_id = $request->id;
+            $price->price = $request->price;
+            $price->currency = 'BDT';
+            $price->save();
+
         } catch (\Throwable $ex) {
             return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
         }
@@ -174,6 +189,7 @@ class BooksController extends Controller
             unlink($path_org);
         }
         $book->delete();
+        Price::where('book_id', $id)->delete();
         return redirect()->route('show.book');
     }
 }

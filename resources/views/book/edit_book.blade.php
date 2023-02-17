@@ -28,6 +28,7 @@
                         <form action="{{ route('update.book') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{ $book->id }}">
+                            <input type="hidden" name="price_id" value="{{ $book->price->id }}">
                             <div class="row mb-4">
                                 <div class="col">
                                     <div class="form-outline">
@@ -41,6 +42,12 @@
                                         <input type="file" id="form6Example2" class="form-control" name="image" />
                                         <label class="form-label" for="form6Example2 ">Previous Image:</label>
                                         <img style="height: 50px; weight:50px;" src="{{ asset('storage/'.$book->image) }}" alt="">
+                                    </div>
+                                </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input type="number" id="form6Example7" class="form-control" value="{{ $book->price->price }}" name="price" min="0"/>
+                                        <label class="form-label" for="form6Example7" name="title">Book Price (৳)</label>
                                     </div>
                                 </div>
                             </div>

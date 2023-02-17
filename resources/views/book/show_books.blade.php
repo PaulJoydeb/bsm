@@ -23,12 +23,13 @@
                     <table class="table table-bordered text-center" width="100%" cellspacing="0">
                         <thead>
                             <tr>
-                                <th>Serial No.</th>
+                                <th>Book ID</th>
                                 <th>Title</th>
                                 <th>Image</th>
                                 <th>Category</th>
                                 <th>Author</th>
                                 <th>Total Books</th>
+                                <th>Books Price (Individual)</th>
                                 <th>Edit</th>
                                 <th>Delete</th>
                             </tr>
@@ -37,12 +38,13 @@
                         <tbody>
                             @foreach ($books as $key => $book)
                                 <tr>
-                                    <td>{{ $key + 1 }}</td>
+                                    <td>BMS-{{ $book->id}}</td>
                                     <td> {{ $book->title }} </td>
                                     <td> <img style="height: 50px; weight:50px;" src="{{ asset('storage/'.$book->image) }}" alt=""> </td>
                                     <td> {{ $book->cateogry ? $book->cateogry->name : ''}} </td>
                                     <td> {{ $book->author ? $book->author->name : ''}} </td>
                                     <td> {{ $book->total_books }} </td>
+                                    <td> {{ $book->price->price }} </td>
                                     <td>
                                         <a class="btn btn-primary"
                                             href="{{ route('edit.book', ['id' => $book->id]) }}">Edit</a>

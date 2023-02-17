@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\Categorie;
 use Illuminate\Http\Request;
 
@@ -15,7 +16,8 @@ class DashboardController extends Controller
     public function index()
     {
         $categories = Categorie::get();
-        return view('dashboard', compact('categories'));
+        $books = Book::with('price')->get();
+        return view('dashboard', compact('categories', 'books'));
     }
 
     /**

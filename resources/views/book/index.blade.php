@@ -40,6 +40,12 @@
                                         <label class="form-label" for="form6Example2 ">Book Image</label>
                                     </div>
                                 </div>
+                                <div class="col">
+                                    <div class="form-outline">
+                                        <input type="number" id="form6Example7" class="form-control" name="price" min="0"/>
+                                        <label class="form-label" for="form6Example7" name="title">Book Price (৳)</label>
+                                    </div>
+                                </div>
                             </div>
 
                             <div class="row mb-4">

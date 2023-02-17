@@ -139,6 +139,25 @@
 
                             @if (Route::has('login'))
                                 @auth
+                                <div class="header__top__right__user">
+                                    <i class="fa fa-user"></i>
+                                    <div>{{ Auth::user()->name }}</div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="{{ route('profile.edit') }}">{{ __('Profile') }}</a></li>
+                                        <li>
+                                            {{-- <a href="{{ route('logout') }}">{{ __('Log Out') }}</a> --}}
+                                            <form method="POST" action="{{ route('logout') }}">
+                                                @csrf
+                                                <x-dropdown-link :href="route('logout')"
+                                                        onclick="event.preventDefault();
+                                                                    this.closest('form').submit();">
+                                                    {{ __('Log Out') }}
+                                                </x-dropdown-link>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
                                 @else
                                     <div class="header__top__right__auth">
                                         <a href="{{ route('login') }}"><i class="fa fa-user"></i> Log in</a>
