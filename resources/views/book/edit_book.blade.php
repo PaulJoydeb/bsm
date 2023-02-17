@@ -28,7 +28,7 @@
                         <form action="{{ route('update.book') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="id" value="{{ $book->id }}">
-                            <input type="hidden" name="price_id" value="{{ $book->price->id }}">
+                            <input type="hidden" name="price_id" value="{{ $book->price ? $book->price->id : 0 }}">
                             <div class="row mb-4">
                                 <div class="col">
                                     <div class="form-outline">
