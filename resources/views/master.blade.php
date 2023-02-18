@@ -51,4 +51,15 @@
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 0) {
+                $('.nice-select').hide();
+                // $('.nice-select').fadeOut();
+            } else {
+                $('.nice-select').show();
+                // $('.nice-select').fadeIn();
+            }
+        });
+    </script>
 </html>

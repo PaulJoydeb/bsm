@@ -36,11 +36,41 @@
                             $current = $total_price - $new_price;
                             $price = $book->price ? $book->price->price : 0;
                             ?>
-                            <h5>৳{!! (!empty($discount_percentage) && $discount_percentage > 0) ? '<s class="text-danger">'.$price.'</s> '. $current : $price !!}</h5>
+                            <h5>৳{!! !empty($discount_percentage) && $discount_percentage > 0
+                                ? '<s class="text-danger">' . $price . '</s> ' . $current
+                                : $price !!}</h5>
                         </div>
                     </div>
                 </div>
             @endforeach
+
+            @foreach ($latest_books as $latest_book)
+                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                    <div class="featured__item">
+                        <div class="featured__item__pic set-bg" data-setbg="storage/{{ $latest_book->image }}">
+                            <ul class="featured__item__pic__hover">
+                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="featured__item__text">
+                            <h6><a href="#">{{ $latest_book->title }}</a></h6>
+                            <?php
+                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                            $l_current = $l_total_price - $l_new_price;
+                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                            ?>
+                            <h5>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                : $l_price !!}</h5>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+
             {{-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
                 <div class="featured__item">
                     <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">

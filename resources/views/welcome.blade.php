@@ -361,26 +361,49 @@
                             </div>
                             <div class="featured__item__text">
                                 <h6><a href="#">{{ $book->title }}</a></h6>
-                                <h5>৳{{ $book->price ? $book->price->price : "" }}</h5>
+                                <?php
+                                $total_price = $book->price ? $book->price->price : 0;
+                                $discount_percentage = $book->discount ? $book->discount->total_discount : 0;
+                                $new_price = ($total_price / 100) * $discount_percentage;
+                                $current = $total_price - $new_price;
+                                $price = $book->price ? $book->price->price : 0;
+                                ?>
+                                <h5>৳{!! !empty($discount_percentage) && $discount_percentage > 0
+                                    ? '<s class="text-danger">' . $price . '</s> ' . $current
+                                    : $price !!}</h5>
                             </div>
                         </div>
                     </div>
                 @endforeach
-                {{-- <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+
+                @foreach ($latest_books as $latest_book)
+                    <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
+                        <div class="featured__item">
+                            <div class="featured__item__pic set-bg" data-setbg="storage/{{ $latest_book->image }}">
+                                <ul class="featured__item__pic__hover">
+                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                </ul>
+                            </div>
+                            <div class="featured__item__text">
+                                <h6><a href="#">{{ $latest_book->title }}</a></h6>
+                                <?php
+                                $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                $l_current = $l_total_price - $l_new_price;
+                                $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                ?>
+                                <h5>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                    ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                    : $l_price !!}</h5>
+                            </div>
                         </div>
                     </div>
-                </div>
+                @endforeach
+
+                {{--
                 <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
@@ -504,62 +527,48 @@
                         <h4>Latest Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @foreach ($latest_books as $latest_book)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="storage/{{ $latest_book->image }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $latest_book->title }}</h6>
+                                            <?php
+                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                            $l_current = $l_total_price - $l_new_price;
+                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            ?>
+                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                                : $l_price !!}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @foreach ($latest_books as $latest_book)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="storage/{{ $latest_book->image }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $latest_book->title }}</h6>
+                                            <?php
+                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                            $l_current = $l_total_price - $l_new_price;
+                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            ?>
+                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                                : $l_price !!}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -569,62 +578,48 @@
                         <h4>Top Rated Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @foreach ($latest_books as $latest_book)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="storage/{{ $latest_book->image }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $latest_book->title }}</h6>
+                                            <?php
+                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                            $l_current = $l_total_price - $l_new_price;
+                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            ?>
+                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                                : $l_price !!}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @foreach ($latest_books as $latest_book)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="storage/{{ $latest_book->image }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $latest_book->title }}</h6>
+                                            <?php
+                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                            $l_current = $l_total_price - $l_new_price;
+                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            ?>
+                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                                : $l_price !!}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -634,62 +629,48 @@
                         <h4>Review Products</h4>
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @foreach ($latest_books as $latest_book)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="storage/{{ $latest_book->image }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $latest_book->title }}</h6>
+                                            <?php
+                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                            $l_current = $l_total_price - $l_new_price;
+                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            ?>
+                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                                : $l_price !!}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                             <div class="latest-prdouct__slider__item">
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-1.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-2.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
-                                <a href="#" class="latest-product__item">
-                                    <div class="latest-product__item__pic">
-                                        <img src="img/latest-product/lp-3.jpg" alt="">
-                                    </div>
-                                    <div class="latest-product__item__text">
-                                        <h6>Crab Pool Security</h6>
-                                        <span>$30.00</span>
-                                    </div>
-                                </a>
+                                @foreach ($latest_books as $latest_book)
+                                    <a href="#" class="latest-product__item">
+                                        <div class="latest-product__item__pic">
+                                            <img src="storage/{{ $latest_book->image }}" alt="">
+                                        </div>
+                                        <div class="latest-product__item__text">
+                                            <h6>{{ $latest_book->title }}</h6>
+                                            <?php
+                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
+                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
+                                            $l_current = $l_total_price - $l_new_price;
+                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
+                                            ?>
+                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
+                                                : $l_price !!}</span>
+                                        </div>
+                                    </a>
+                                @endforeach
                             </div>
                         </div>
                     </div>
@@ -788,6 +769,18 @@
     <script src="{{ asset('js/mixitup.min.js') }}"></script>
     <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+
+    <script>
+        $(window).scroll(function() {
+            if ($(this).scrollTop() > 0) {
+                $('.nice-select').hide();
+                // $('.nice-select').fadeOut();
+            } else {
+                $('.nice-select').show();
+                // $('.nice-select').fadeIn();
+            }
+        });
+    </script>
 
 
 
