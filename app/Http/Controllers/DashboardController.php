@@ -97,7 +97,8 @@ class DashboardController extends Controller
 
     public function shopGrid()
     {
-        return view('shop.shop_grid');
+        $books = Book::latest()->paginate(9);
+        return view('shop.shop_grid', compact('books'));
     }
 
     public function shopCart()
