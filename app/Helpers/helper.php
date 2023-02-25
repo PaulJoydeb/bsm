@@ -4,6 +4,9 @@ use Illuminate\Support\Facades\Auth;
 
 function totalFavourite()
 {
-    $totalFavourite = Favourite::where('user_id', Auth::user()->id)->count();
-    return $totalFavourite;
+    if (Auth::user()) {
+        $totalFavourite = Favourite::where('user_id', Auth::user()->id)->count();
+        return $totalFavourite;
+    }
+    return 0;
 }

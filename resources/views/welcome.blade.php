@@ -203,7 +203,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="{{route('show.favourite')}}"><i class="fa fa-heart"></i> <span>{{$favourite}}</span></a></li>
+                            <li><a href="{{route('show.favourite')}}"><i class="fa fa-heart"></i> <span>{{ totalFavourite() }}</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>৳150.00</span></div>

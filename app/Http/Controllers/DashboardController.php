@@ -17,20 +17,18 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $favourite = Favourite::where('user_id', Auth::user()->id)->count();
         $categories = Categorie::get();
         $books = Book::with('price', 'discount')->limit(4)->get();
         $latest_books = Book::with('price', 'discount')->limit(4)->latest()->get();
-        return view('welcome', compact('categories', 'books', 'latest_books', 'favourite'));
+        return view('welcome', compact('categories', 'books', 'latest_books'));
     }
 
     public function home()
     {
-        $favourite = Favourite::where('user_id', Auth::user()->id)->count();
         $categories = Categorie::get();
         $books = Book::with('price', 'discount')->limit(4)->get();
         $latest_books = Book::with('price', 'discount')->limit(4)->latest()->get();
-        return view('welcome', compact('categories', 'books', 'latest_books', 'favourite'));
+        return view('welcome', compact('categories', 'books', 'latest_books'));
     }
 
     /**
