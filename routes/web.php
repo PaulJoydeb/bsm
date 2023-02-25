@@ -6,6 +6,7 @@ use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiscountController;
+use App\Http\Controllers\FavoriteController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +50,7 @@ Route::middleware('auth')->group(function () {
     // contact
     Route::get('/contact', [DashboardController::class, 'contact'])->name('contact');
 
+    // Start for admin
     //Author CRUD
     Route::get('/author', [AuthorController::class, 'index'])->name('new.author');
     Route::post('/store/author', [AuthorController::class, 'store'])->name('store.author');
@@ -80,6 +82,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/edit/discount/{id}', [DiscountController::class, 'edit'])->name('edit.discount');
     Route::post('/update/discount', [DiscountController::class, 'update'])->name('update.discount');
     Route::delete('/discount/delete/{id}', [DiscountController::class, 'destroy'])->name('delete.discount');
+    // End for admin
+    
+    // heart
+    Route::get('/heart/{id}', [FavoriteController::class, 'heartSave'])->name('heart');
+    Route::get('/favourites', [FavoriteController::class, 'heartShow'])->name('show.favourite');
+    Route::delete('/favourite/delete/{id}', [FavoriteController::class, 'delete'])->name('delete.favourite');
 
 });
 

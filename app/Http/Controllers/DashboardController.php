@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use App\Models\Categorie;
+use App\Models\Favourite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
@@ -15,18 +17,20 @@ class DashboardController extends Controller
      */
     public function index()
     {
+        $favourite = Favourite::where('user_id', Auth::user()->id)->count();
         $categories = Categorie::get();
         $books = Book::with('price', 'discount')->limit(4)->get();
         $latest_books = Book::with('price', 'discount')->limit(4)->latest()->get();
-        return view('welcome', compact('categories', 'books', 'latest_books'));
+        return view('welcome', compact('categories', 'books', 'latest_books', 'favourite'));
     }
 
     public function home()
     {
+        $favourite = Favourite::where('user_id', Auth::user()->id)->count();
         $categories = Categorie::get();
         $books = Book::with('price', 'discount')->limit(4)->get();
         $latest_books = Book::with('price', 'discount')->limit(4)->latest()->get();
-        return view('welcome', compact('categories', 'books', 'latest_books'));
+        return view('welcome', compact('categories', 'books', 'latest_books', 'favourite'));
     }
 
     /**
@@ -97,8 +101,9 @@ class DashboardController extends Controller
 
     public function shopGrid()
     {
+        $favourite = Favourite::where('user_id', Auth::user()->id)->count();
         $books = Book::latest()->paginate(9);
-        return view('shop.shop_grid', compact('books'));
+        return view('shop.shop_grid', compact('books','favourite'));
     }
 
     public function shopCart()

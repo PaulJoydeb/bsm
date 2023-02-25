@@ -76,7 +76,7 @@
         </div>
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
-                <li class="active"><a href="./index.html">Home</a></li>
+                <li class="active"><a href="{{ url('/') }}">Home</a></li>
                 <li><a href="{{route('shop-grid')}}">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
@@ -187,7 +187,7 @@
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
+                            <li class="active"><a href="{{ url('/') }}">Home</a></li>
                             <li><a href="{{route('shop-grid')}}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
@@ -203,7 +203,7 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="#"><i class="fa fa-heart"></i> <span>0</span></a></li>
+                            <li><a href="{{route('show.favourite')}}"><i class="fa fa-heart"></i> <span>{{$favourite}}</span></a></li>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>৳150.00</span></div>
@@ -352,8 +352,8 @@
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="storage/{{ $book->image }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="{{route('heart', ['id' => $book->id])}}"><i class="fa fa-heart"></i></a></li>
+                                    {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
@@ -379,8 +379,8 @@
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="storage/{{ $latest_book->image }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-retweet"></i></a></li>
+                                    <li><a href="{{route('heart', ['id' => $latest_book->id])}}"><i class="fa fa-heart"></i></a></li>
+                                    {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
                                     <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
