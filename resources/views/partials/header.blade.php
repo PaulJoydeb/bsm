@@ -6,7 +6,7 @@
                     <div class="header__top__left">
                         <ul>
                             <li><i class="fa fa-envelope"></i> bms@gmail.com</li>
-                            <li>Free Shipping for all Order of <code>৫৫৳</code></li>
+                            <li>Shipping for all Order of <code>৫৫৳</code></li>
                         </ul>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
                         <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ totalCart() }}</span></a>
                         </li>
                     </ul>
-                    <div class="header__cart__price">item: <span>৳150.00</span></div>
+                    <div class="header__cart__price">item: <span>BDT {{total()}}</span></div>
                 </div>
             </div>
         </div>

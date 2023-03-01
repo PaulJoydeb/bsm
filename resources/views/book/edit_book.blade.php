@@ -47,7 +47,7 @@
                                 <div class="col">
                                     <div class="form-outline">
                                         <input type="number" id="form6Example7" class="form-control" value="{{$book->price ? $book->price->price : 0 }}" name="price" min="0"/>
-                                        <label class="form-label" for="form6Example7" name="title">Book Price (৳)</label>
+                                        <label class="form-label" for="form6Example7" name="title">Book Price (BDT)</label>
                                     </div>
                                 </div>
                             </div>

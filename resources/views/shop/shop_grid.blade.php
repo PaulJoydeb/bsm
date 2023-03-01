@@ -267,7 +267,7 @@
                                         $current = $total_price - $new_price;
                                         $price = $book->price ? $book->price->price : 0;
                                         ?>
-                                        <h5>৳{!! !empty($discount_percentage) && $discount_percentage > 0
+                                        <h5>BDT{!! !empty($discount_percentage) && $discount_percentage > 0
                                             ? '<s class="text-danger">' . $price . '</s> ' . $current
                                             : $price !!}</h5>
                                     </div>

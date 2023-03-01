@@ -43,26 +43,26 @@
                                                 alt="">
                                             <h5>{{ $cart->book ? $cart->book->title : '' }}</h5>
                                         </td>
-                                        <td class="shoping__cart__price">৳
+                                        <td class="shoping__cart__price">BDT
                                             {{ $cart->price ? $cart->price->price : 0 }}
                                         </td>
                                         <td class="shoping__cart__quantity">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" value="{{$cart->quantity}}">
+                                                    <input type="text" value="{{ $cart->quantity }}">
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="shoping__cart__total">৳
+                                        <td class="shoping__cart__total">BDT
                                             {{ $cart->price ? $cart->price->price : 0 }}
                                         </td>
                                         <td class="shoping__cart__item__close">
                                             {{-- <span class="icon_close"></span> --}}
-                                            <form action="{{ route('delete.cart', ['id' => $cart->id]) }}"
-                                                method="POST">
+                                            <form action="{{ route('delete.cart', ['id' => $cart->id]) }}" method="POST">
                                                 @method('DELETE')
                                                 @csrf
-                                                <button class="btn btn-danger rounded-0" onclick="return confirm('Are you sure?')">Delete</button>
+                                                <button class="btn btn-danger rounded-0"
+                                                    onclick="return confirm('Are you sure?')">Delete</button>
                                             </form>
                                         </td>
                                     </tr>
@@ -93,16 +93,17 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="shoping__checkout">
-                        <form action="{{route('process.checkout')}}" method="POST">
+                        <form action="{{ route('process.checkout') }}" method="POST">
                             @csrf
                             <h5>Cart Total</h5>
                             <ul>
-                                <li>Subtotal <span>৳454.98</span></li>
-                                <li>Total <span>৳454.98</span></li>
+                                <li>Subtotal <span>BDT {{ $subtotal_price }}</span></li>
+                                <li>Discount <span>BDT {{ $subtotal_price - $total_price }}</span></li>
+                                <li>Total <span>BDT {{ $total_price }}</span></li>
                             </ul>
                             <button type="submit" class="primary-btn border-0">PROCEED TO CHECKOUT</button>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>

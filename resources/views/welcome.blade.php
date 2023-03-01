@@ -47,7 +47,7 @@
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
+            <div class="header__cart__price">item: <span>BDT {{total()}}</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -115,7 +115,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> bms@gmail.com</li>
-                                <li>Free Shipping for all Order of <code>৫৫৳</code></li>
+                                <li>Shipping for all Order of <code>৫৫৳</code></li>
                             </ul>
                         </div>
                     </div>
@@ -208,7 +208,7 @@
                             <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-bag"></i>
                                     <span>{{ totalCart() }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>৳150.00</span></div>
+                        <div class="header__cart__price">item: <span>BDT {{total()}}</span></div>
                     </div>
                 </div>
             </div>
@@ -370,9 +370,9 @@
                                 $current = $total_price - $new_price;
                                 $price = $book->price ? $book->price->price : 0;
                                 ?>
-                                <h5>৳{!! !empty($discount_percentage) && $discount_percentage > 0
+                                <h5>{!! !empty($discount_percentage) && $discount_percentage > 0
                                     ? '<s class="text-danger">' . $price . '</s> ' . $current
-                                    : $price !!}</h5>
+                                    : $price !!}BDT</h5>
                             </div>
                         </div>
                     </div>
@@ -399,9 +399,9 @@
                                 $l_current = $l_total_price - $l_new_price;
                                 $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                 ?>
-                                <h5>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                <h5>{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                     ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                    : $l_price !!}</h5>
+                                    : $l_price !!}BDT</h5>
                             </div>
                         </div>
                     </div>
@@ -545,9 +545,9 @@
                                             $l_current = $l_total_price - $l_new_price;
                                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                             ?>
-                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                            <span>{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}</span>
+                                                : $l_price !!}BDT</span>
                                         </div>
                                     </a>
                                 @endforeach
@@ -567,9 +567,9 @@
                                             $l_current = $l_total_price - $l_new_price;
                                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                             ?>
-                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                            <span>{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}</span>
+                                                : $l_price !!}BDT</span>
                                         </div>
                                     </a>
                                 @endforeach
@@ -596,7 +596,7 @@
                                             $l_current = $l_total_price - $l_new_price;
                                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                             ?>
-                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
                                                 : $l_price !!}</span>
                                         </div>
@@ -618,7 +618,7 @@
                                             $l_current = $l_total_price - $l_new_price;
                                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                             ?>
-                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
                                                 : $l_price !!}</span>
                                         </div>
@@ -647,7 +647,7 @@
                                             $l_current = $l_total_price - $l_new_price;
                                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                             ?>
-                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
                                                 : $l_price !!}</span>
                                         </div>
@@ -669,7 +669,7 @@
                                             $l_current = $l_total_price - $l_new_price;
                                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                                             ?>
-                                            <span>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
                                                 : $l_price !!}</span>
                                         </div>

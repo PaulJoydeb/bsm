@@ -21,3 +21,22 @@ function totalCart()
     }
     return 0;
 }
+
+function total()
+{
+    if (Auth::user()) {
+        $auth_id = Auth::user()->id;
+        $total_carts = Cart::with('book', 'price', 'discount')->where('user_id', $auth_id)->get();
+
+        $total_price = 0;
+        foreach ($total_carts as $key => $cart) {
+            $toal_discount = $cart->discount ? $cart->discount->total_discount : 0;
+            $dis_price = $cart->price->price;
+            $new_price = ($dis_price / 100) * $toal_discount;
+            $current = $dis_price - $new_price;
+            $total_price = $total_price + $current;
+        }
+        return $total_price;
+    }
+    return 0;
+}

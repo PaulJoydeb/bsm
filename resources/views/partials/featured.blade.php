@@ -36,7 +36,7 @@
                             $current = $total_price - $new_price;
                             $price = $book->price ? $book->price->price : 0;
                             ?>
-                            <h5>৳{!! !empty($discount_percentage) && $discount_percentage > 0
+                            <h5>BDT{!! !empty($discount_percentage) && $discount_percentage > 0
                                 ? '<s class="text-danger">' . $price . '</s> ' . $current
                                 : $price !!}</h5>
                         </div>
@@ -63,7 +63,7 @@
                             $l_current = $l_total_price - $l_new_price;
                             $l_price = $latest_book->price ? $latest_book->price->price : 0;
                             ?>
-                            <h5>৳{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
+                            <h5>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
                                 ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
                                 : $l_price !!}</h5>
                         </div>

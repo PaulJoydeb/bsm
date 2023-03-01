@@ -43,7 +43,7 @@
                                                 alt="">
                                             <h5>{{ $favourite->book ? $favourite->book->title : '' }}</h5>
                                         </td>
-                                        <td class="shoping__cart__price">৳
+                                        <td class="shoping__cart__price">BDT
                                             {{ $favourite->price ? $favourite->price->price : 0 }}
                                         </td>
                                         <td class="shoping__cart__quantity">
