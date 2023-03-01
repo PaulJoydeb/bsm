@@ -77,7 +77,7 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{route('shop-grid')}}">Shop</a></li>
+                <li><a href="{{ route('shop-grid') }}">Shop</a></li>
                 <li><a href="#">Pages</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
@@ -188,23 +188,25 @@
                     <nav class="header__menu">
                         <ul>
                             <li class="active"><a href="{{ url('/') }}">Home</a></li>
-                            <li><a href="{{route('shop-grid')}}">Shop</a></li>
+                            <li><a href="{{ route('shop-grid') }}">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="{{route('cart')}}">Shoping Cart</a></li>
-                                    <li><a href="{{route('checkout')}}">Check Out</a></li>
+                                    <li><a href="{{ route('show.cart') }}">Shoping Cart</a></li>
+                                    <li><a href="{{ route('checkout') }}">Check Out</a></li>
                                 </ul>
                             </li>
                             <li><a href="#">Blog</a></li>
-                            <li><a href="{{route('contact')}}">Contact</a></li>
+                            <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="{{route('show.favourite')}}"><i class="fa fa-heart"></i> <span>{{ totalFavourite() }}</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                            <li><a href="{{ route('show.favourite') }}"><i class="fa fa-heart"></i>
+                                    <span>{{ totalFavourite() }}</span></a></li>
+                            <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-bag"></i>
+                                    <span>{{ totalCart() }}</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>৳150.00</span></div>
                     </div>
@@ -352,9 +354,11 @@
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="storage/{{ $book->image }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{route('heart', ['id' => $book->id])}}"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('heart', ['id' => $book->id]) }}"><i
+                                                class="fa fa-heart"></i></a></li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="{{ route('cart.store', ['id' => $book->id]) }}"><i
+                                                class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">
@@ -379,9 +383,11 @@
                         <div class="featured__item">
                             <div class="featured__item__pic set-bg" data-setbg="storage/{{ $latest_book->image }}">
                                 <ul class="featured__item__pic__hover">
-                                    <li><a href="{{route('heart', ['id' => $latest_book->id])}}"><i class="fa fa-heart"></i></a></li>
+                                    <li><a href="{{ route('heart', ['id' => $latest_book->id]) }}"><i
+                                                class="fa fa-heart"></i></a></li>
                                     {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="{{ route('cart.store', ['id' => $latest_book->id]) }}"><i
+                                                class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="featured__item__text">

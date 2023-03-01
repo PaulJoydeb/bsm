@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BooksController;
+use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiscountController;
@@ -40,9 +41,6 @@ Route::middleware('auth')->group(function () {
     
     // shop
     Route::get('/shop/grid', [DashboardController::class, 'shopGrid'])->name('shop-grid');
-
-    // cart
-    Route::get('/shop/cart', [DashboardController::class, 'shopCart'])->name('cart');
 
     // checkout
     Route::get('/checkout', [DashboardController::class, 'checkout'])->name('checkout');
@@ -89,6 +87,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/favourites', [FavoriteController::class, 'heartShow'])->name('show.favourite');
     Route::delete('/favourite/delete/{id}', [FavoriteController::class, 'delete'])->name('delete.favourite');
 
+    //cart
+    Route::get('/cart/store/{id}', [CartController::class, 'cartSave'])->name('cart.store');
+    Route::get('/carts', [CartController::class, 'cartShow'])->name('show.cart');
+    Route::delete('/cart/delete/{id}', [CartController::class, 'delete'])->name('delete.cart');
+
+    //buy
+    Route::post('/process/checkout', [CartController::class, 'processCheckout'])->name('process.checkout');
 });
 
 require __DIR__.'/auth.php';

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Cart;
 use App\Models\Categorie;
 use App\Models\Favourite;
 use Illuminate\Http\Request;
@@ -103,12 +104,6 @@ class DashboardController extends Controller
         $books = Book::latest()->paginate(9);
         return view('shop.shop_grid', compact('books','favourite'));
     }
-
-    public function shopCart()
-    {
-        return view('cart.index');
-    }
-
     public function checkout()
     {
         return view('checkout.index');

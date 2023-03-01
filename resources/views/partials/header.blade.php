@@ -68,10 +68,10 @@
                                 href="{{ '/dashboard' }}">Home</a></li>
                         <li class="{{ Route::is('shop-grid') ? 'active' : '' }}"><a
                                 href="{{ route('shop-grid') }}">Shop</a></li>
-                        <li class="{{ Route::is('cart') || Route::is('checkout') ? 'active' : '' }}"><a
+                        <li class="{{ Route::is('show.cart') || Route::is('checkout') ? 'active' : '' }}"><a
                                 href="#">Pages</a>
                             <ul class="header__menu__dropdown">
-                                <li><a href="{{ route('cart') }}">Shoping Cart</a></li>
+                                <li><a href="{{ route('show.cart') }}">Shoping Cart</a></li>
                                 <li><a href="{{ route('checkout') }}">Check Out</a></li>
                             </ul>
                         </li>
@@ -84,8 +84,9 @@
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul>
-                        <li><a href="#"><i class="fa fa-heart"></i> <span>{{ totalFavourite() }}</span></a></li>
-                        <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>0</span></a></li>
+                        <li><a href="{{ route('show.favourite') }}"><i class="fa fa-heart"></i> <span>{{ totalFavourite() }}</span></a></li>
+                        <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-bag"></i> <span>{{ totalCart() }}</span></a>
+                        </li>
                     </ul>
                     <div class="header__cart__price">item: <span>৳150.00</span></div>
                 </div>

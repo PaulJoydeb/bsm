@@ -15,7 +15,7 @@ class FavoriteController extends Controller
 
             $exists = Favourite::where('book_id', $id)->where('user_id', $auth->id)->exists();
             if ($exists != true) {
-                $session_ip = $_SERVER['REMOTE_ADDR'];        ;
+                $session_ip = $_SERVER['REMOTE_ADDR'];
                 $favourite = new Favourite();
                 $favourite->user_id = $auth->id;
                 $favourite->book_id = $id;

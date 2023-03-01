@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_id')->nullable();
             $table->integer('book_id')->nullable();
             $table->tinyInteger('status')->nullable();
+            $table->integer('quantity')->nullable();
             $table->timestamps();
         });
     }
