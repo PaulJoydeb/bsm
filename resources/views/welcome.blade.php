@@ -755,7 +755,7 @@
                         </div>
                         <div class="footer__copyright__payment">
                             {{-- <img src="img/payment-item.png" alt=""> --}}
-                            <h4 class="cash_on_delivery">CASH ON DELIVERY</h4>
+                            <h4 class="">ONLY CASH ON DELIVERY</h4>
                         </div>
                     </div>
                 </div>

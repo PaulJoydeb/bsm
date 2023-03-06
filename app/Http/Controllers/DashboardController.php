@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Categorie;
+use App\Models\Checkout;
 use App\Models\Favourite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -106,7 +107,16 @@ class DashboardController extends Controller
     }
     public function checkout()
     {
-        return view('checkout.index');
+        $auth_id = Auth::user()->id;
+        $checkouts = Checkout::where('user_id', $auth_id)->where('status', 1)->get();
+        $subtotal = 0;
+        $total = 0;
+        foreach ($checkouts as $key => $checkout) {
+            $subtotal = $subtotal + $checkout->subtotal;
+            $total = $total + $checkout->total;
+        }
+
+        return view('checkout.index', compact('subtotal', 'total'));
     }
 
     public function contact()

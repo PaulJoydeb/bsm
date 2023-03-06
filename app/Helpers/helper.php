@@ -16,7 +16,7 @@ function totalFavourite()
 function totalCart()
 {
     if (Auth::user()) {
-        $totalCart = Cart::where('user_id', Auth::user()->id)->count();
+        $totalCart = Cart::where('user_id', Auth::user()->id)->where('status', 1)->count();
         return $totalCart;
     }
     return 0;
@@ -26,7 +26,7 @@ function total()
 {
     if (Auth::user()) {
         $auth_id = Auth::user()->id;
-        $total_carts = Cart::with('book', 'price', 'discount')->where('user_id', $auth_id)->get();
+        $total_carts = Cart::with('book', 'price', 'discount')->where('user_id', $auth_id)->where('status', 1)->get();
 
         $total_price = 0;
         foreach ($total_carts as $key => $cart) {

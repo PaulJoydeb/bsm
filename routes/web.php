@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthorController;
 use App\Http\Controllers\BooksController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\FavoriteController;
@@ -94,6 +95,7 @@ Route::middleware('auth')->group(function () {
 
     //buy
     Route::post('/process/checkout', [CartController::class, 'processCheckout'])->name('process.checkout');
+    Route::post('/place/order', [CheckoutController::class, 'placeOrder'])->name('place.order');
 });
 
 require __DIR__.'/auth.php';

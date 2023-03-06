@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
-use Illuminate\Http\Request;
+use App\Models\Checkout;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 
@@ -28,7 +28,7 @@ class CartController extends Controller
     public function cartShow()
     {
         $auth_id = Auth::user()->id;
-        $cart_table = Cart::with('book','price','discount')->where('user_id', $auth_id);
+        $cart_table = Cart::with('book','price','discount')->where('user_id', $auth_id)->where('status', 1);
         $carts = $cart_table->paginate(5);
         $total_carts = $cart_table->get();
 
@@ -53,10 +53,11 @@ class CartController extends Controller
         return redirect()->route('show.cart');
     }
 
-    public function processCheckout(Request $request)
+    public function processCheckout()
     {
         $auth_id = Auth::user()->id;
-        $total_carts = Cart::with('book','price','discount')->where('user_id', $auth_id)->get();
+        $total_carts = Cart::with('book','price','discount')->where('user_id', $auth_id, )
+        ->where('status', 1)->get();
         $subtotal_price = 0;
         $total_price = 0;
         foreach ($total_carts as $key => $cart) {
@@ -67,10 +68,27 @@ class CartController extends Controller
             $total_price = $total_price + $current;
 
             $subtotal_price = $subtotal_price + $cart->price->price;
+
+            $cart = Cart::findOrFail($cart->id);
+            $cart->status = 0;
+            $cart->save();
         }
-        $price['subtotal'] = $subtotal_price;
-        $price['total'] = $total_price;
-        $price['discount'] = $price['subtotal'] - $price['total'];
-        dd($price);
+        $subtotal = $subtotal_price;
+        $total = $total_price;
+        $discount = ($subtotal - $total);
+        try {
+            $checkout = new Checkout();
+            $checkout->user_id = $auth_id;
+            $checkout->meta_data = json_encode($total_carts);
+            $checkout->subtotal = $subtotal;
+            $checkout->total = $total;
+            $checkout->discount = $discount;
+            $checkout->status = 1;
+            $checkout->save();
+        } catch (\Exception $ex) {
+            dd($ex);
+            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+        }
+        return redirect()->route('dashboard');
     }
 }
