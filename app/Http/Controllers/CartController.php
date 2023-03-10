@@ -56,7 +56,9 @@ class CartController extends Controller
     public function processCheckout()
     {
         $auth_id = Auth::user()->id;
-        $total_carts = Cart::with('book','price','discount')->where('user_id', $auth_id, )
+        $total_carts = Cart::with('book','price','discount')->where('user_id', $auth_id)
+        ->where('status', 1)->get();
+        $book_ids = Cart::select(['book_id'])->where('user_id', $auth_id)
         ->where('status', 1)->get();
         $subtotal_price = 0;
         $total_price = 0;
@@ -79,6 +81,7 @@ class CartController extends Controller
         try {
             $checkout = new Checkout();
             $checkout->user_id = $auth_id;
+            $checkout->book_ids = json_encode($book_ids);
             $checkout->meta_data = json_encode($total_carts);
             $checkout->subtotal = $subtotal;
             $checkout->total = $total;
@@ -86,7 +89,6 @@ class CartController extends Controller
             $checkout->status = 1;
             $checkout->save();
         } catch (\Exception $ex) {
-            dd($ex);
             return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
         }
         return redirect()->route('dashboard');

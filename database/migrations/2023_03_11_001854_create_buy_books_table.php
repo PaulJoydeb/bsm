@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('checkouts', function (Blueprint $table) {
+        Schema::create('buy_books', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
-            $table->json('book_ids')->nullable();
-            $table->json('meta_data')->nullable();
             $table->integer('subtotal')->nullable();
             $table->integer('total')->nullable();
-            $table->integer('discount')->nullable();
-            $table->integer('status')->nullable();
+            $table->integer('process')->nullable();
+            $table->integer('status')->nullable()->default(0);
+            $table->json('json_book_ids')->nullable();
+            $table->json('billing_details')->nullable();
             $table->timestamps();
         });
     }
@@ -33,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('checkouts');
+        Schema::dropIfExists('buy_books');
     }
 };

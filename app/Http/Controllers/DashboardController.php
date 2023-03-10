@@ -7,6 +7,7 @@ use App\Models\Cart;
 use App\Models\Categorie;
 use App\Models\Checkout;
 use App\Models\Favourite;
+use App\Models\UserRecord;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -115,8 +116,9 @@ class DashboardController extends Controller
             $subtotal = $subtotal + $checkout->subtotal;
             $total = $total + $checkout->total;
         }
+        $user_record = UserRecord::where('user_id', Auth::user()->id)->first();
 
-        return view('checkout.index', compact('subtotal', 'total'));
+        return view('checkout.index', compact('subtotal', 'total', 'user_record'));
     }
 
     public function contact()

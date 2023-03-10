@@ -35,53 +35,53 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-6">
                             <div class="row">
-                                <div class="col-lg-6">
+                                <div class="col-lg-12">
                                     <div class="checkout__input">
-                                        <p>Fist Name<span>*</span></p>
-                                        <input type="text" name="fist_name">
+                                        <p>Full Name<span>*</span></p>
+                                        <input type="text" name="name" value="{{ Auth::user()->name }}">
                                     </div>
                                 </div>
-                                <div class="col-lg-6">
+                                {{-- <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Last Name<span>*</span></p>
                                         <input type="text" name="last_name">
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                <input type="text" name="country">
+                                <input type="text" name="country" value="{{$user_record->country}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
                                 <input type="text" placeholder="Street Address" class="checkout__input__add"
-                                    name="address">
+                                    name="primary_address" value="{{$user_record->primary_address}}">
                                 <input type="text" placeholder="Apartment, suite, unite ect (optinal)"
-                                    name="additional_address">
+                                    name="secondary_address" value="{{$user_record->secondary_address}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Town/City<span>*</span></p>
-                                <input type="text" name="town_or_city">
+                                <input type="text" name="town_or_city" value="{{$user_record->town_or_city}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Country/State<span>*</span></p>
-                                <input type="text" name="country_or_state">
+                                <input type="text" name="country_or_state" value="{{$user_record->country_or_state}}">
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode/ZIP<span>*</span></p>
-                                <input type="text" name="postcode_or_zip">
+                                <input type="text" name="postcode_or_zip" value="{{$user_record->postcode_or_zip}}">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone">
+                                        <input type="text" name="phone" value="{{$user_record->phone}}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Email<span>*</span></p>
-                                        <input type="text" name="email">
+                                        <input type="text" name="email" value="{{ Auth::user()->email }}">
                                     </div>
                                 </div>
                             </div>
@@ -133,7 +133,7 @@
                                 <div class="checkout__input__checkbox">
                                     <label for="payment">
                                         Check Payment
-                                        <input type="checkbox" id="payment">
+                                        <input type="checkbox" id="payment" name="payment_type" value="1">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
