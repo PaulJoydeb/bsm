@@ -33,13 +33,13 @@
 <body>
     
     <!-- Header Section Begin -->
-    @include('partials.header');
+    @include('partials.header')
     <!-- Header Section End -->
 
     @yield('content')
     
     <!-- Footer Section Begin -->
-    @include('partials.footer');
+    @include('partials.footer')
     <!-- Footer Section End -->
 </body>
     <!-- Js Plugins -->

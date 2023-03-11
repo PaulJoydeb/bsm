@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Book;
 use App\Models\BuyBook;
 use App\Models\Checkout;
 use Illuminate\Http\Request;
@@ -15,6 +16,7 @@ class CheckoutController extends Controller
         $billing_details = json_encode($request->except('_token'));
         $auth_id = Auth::user()->id;
         $checkouts = Checkout::where('user_id', $auth_id)->where('status', 1)->get();
+        $checkout_ids = Checkout::select('id')->where('user_id', $auth_id)->where('status', 1)->get();
         $subtotal = 0;
         $total = 0;
         foreach ($checkouts as $key => $checkout) {
@@ -42,19 +44,38 @@ class CheckoutController extends Controller
             $json_book_ids = json_encode($newArray);
         }
 
+        $book_name_list = Book::select('title')->whereIn('id', $newArray)->get();
+
         try {
             $buy = new BuyBook();
             $buy->subtotal = $subtotal;
             $buy->user_id =  Auth::user()->id;
+            $buy->checkout_ids = json_encode($checkout_ids);
             $buy->total = $total;
             $buy->process = 1;
             $buy->status = 1;
             $buy->json_book_ids = $json_book_ids;
+            $buy->json_book_names = json_encode($book_name_list);
             $buy->billing_details = $billing_details;
             $buy->save();
         } catch (\Exception $ex) {
+            dd($ex);
             return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
         }
         return redirect()->route('dashboard');
+    }
+
+    public function productDetails($id)
+    {
+        $book = Book::with('author', 'cateogry', 'price', 'discount')->findOrFail($id);
+        $releated_books = Book::with('author', 'cateogry', 'price', 'discount')->where('category_id', $book->category_id)->latest()->limit(4)->get();
+        return view('shop.product_details', compact('book','releated_books'));
+    }
+
+    public function orderList()
+    {
+        $auth_id = Auth::user()->id;
+        $order_lists = BuyBook::where('user_id', $auth_id)->paginate(5);
+        return view('shop.order_list', compact('order_lists'));
     }
 }

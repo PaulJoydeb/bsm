@@ -75,7 +75,7 @@
                                 <li><a href="{{ route('checkout') }}">Check Out</a></li>
                             </ul>
                         </li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="{{route('ordered')}}">Your Order</a></li>
                         <li class="{{ Route::is('contact') ? 'active' : '' }}"><a
                                 href="{{ route('contact') }}">Contact</a></li>
                     </ul>

@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('buy_books', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->nullable();
+            $table->json('checkout_ids')->nullable();
             $table->integer('subtotal')->nullable();
             $table->integer('total')->nullable();
             $table->integer('process')->nullable();
             $table->integer('status')->nullable()->default(0);
             $table->json('json_book_ids')->nullable();
+            $table->json('json_book_names')->nullable();
             $table->json('billing_details')->nullable();
             $table->timestamps();
         });

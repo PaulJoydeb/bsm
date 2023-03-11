@@ -17,35 +17,44 @@
         @csrf
         @method('patch')
         <input type="hidden" name="billing_address" value="1">
+        <?php
+        $country = $user_record ? $user_record->country : "";
+        $primary_address = $user_record ? $user_record->primary_address : "";
+        $secondary_address = $user_record ? $user_record->secondary_address : "";
+        $town_or_city = $user_record ? $user_record->town_or_city : "";
+        $country_or_state = $user_record ? $user_record->country_or_state : "";
+        $postcode_or_zip = $user_record ? $user_record->postcode_or_zip : "";
+        $phone = $user_record ? $user_record->phone : "";
+        ?>
         <div>
             <x-input-label for="country" :value="__('Country')" />
-            <x-text-input id="country" name="country" type="text" class="mt-1 block w-full" :value="old('country', $user_record->country)" required autofocus autocomplete="country" />
+            <x-text-input id="country" name="country" type="text" class="mt-1 block w-full" :value="old('country', $country)" required autofocus autocomplete="country" />
             <x-input-error class="mt-2" :messages="$errors->get('country')" />
         </div>
         <div>
             <x-input-label for="primary_address" :value="__('Address')" />
-            <x-text-input id="primary_address" name="primary_address" type="text" class="mt-1 block w-full" :value="old('primary_address', $user_record->primary_address)" placeholder="Street Address" required autofocus autocomplete="primary_address" />
-            <x-text-input id="secondary_address" name="secondary_address" type="text" class="mt-1 block w-full" :value="old('secondary_address', $user_record->secondary_address)" placeholder="Apartment, suite, unite ect (optinal)"/>
+            <x-text-input id="primary_address" name="primary_address" type="text" class="mt-1 block w-full" :value="old('primary_address', $primary_address)" placeholder="Street Address" required autofocus autocomplete="primary_address" />
+            <x-text-input id="secondary_address" name="secondary_address" type="text" class="mt-1 block w-full" :value="old('secondary_address', $secondary_address)" placeholder="Apartment, suite, unite ect (optinal)"/>
             <x-input-error class="mt-2" :messages="$errors->get('primary_address')" />
         </div>
         <div>
             <x-input-label for="town_or_city" :value="__('Town/City')" />
-            <x-text-input id="town_or_city" name="town_or_city" type="text" class="mt-1 block w-full" :value="old('town_or_city', $user_record->town_or_city)" required autofocus autocomplete="town_or_city" />
+            <x-text-input id="town_or_city" name="town_or_city" type="text" class="mt-1 block w-full" :value="old('town_or_city', $town_or_city)" required autofocus autocomplete="town_or_city" />
             <x-input-error class="mt-2" :messages="$errors->get('town_or_city')" />
         </div>
         <div>
             <x-input-label for="country_or_state" :value="__('Country/State')" />
-            <x-text-input id="country_or_state" name="country_or_state" type="text" class="mt-1 block w-full" :value="old('country_or_state', $user_record->country_or_state)" required autofocus autocomplete="country_or_state" />
+            <x-text-input id="country_or_state" name="country_or_state" type="text" class="mt-1 block w-full" :value="old('country_or_state', $country_or_state)" required autofocus autocomplete="country_or_state" />
             <x-input-error class="mt-2" :messages="$errors->get('country_or_state')" />
         </div>
         <div>
             <x-input-label for="postcode_or_zip" :value="__('Postcode/ZIP')" />
-            <x-text-input id="postcode_or_zip" name="postcode_or_zip" type="text" class="mt-1 block w-full" :value="old('postcode_or_zip', $user_record->postcode_or_zip)" required autofocus autocomplete="postcode_or_zip" />
+            <x-text-input id="postcode_or_zip" name="postcode_or_zip" type="text" class="mt-1 block w-full" :value="old('postcode_or_zip', $postcode_or_zip)" required autofocus autocomplete="postcode_or_zip" />
             <x-input-error class="mt-2" :messages="$errors->get('postcode_or_zip')" />
         </div>
         <div>
             <x-input-label for="phone" :value="__('Phone')" />
-            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $user_record->phone)" required autofocus autocomplete="phone" />
+            <x-text-input id="phone" name="phone" type="text" class="mt-1 block w-full" :value="old('phone', $phone)" required autofocus autocomplete="phone" />
             <x-input-error class="mt-2" :messages="$errors->get('phone')" />
         </div>
 

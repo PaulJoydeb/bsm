@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Cart;
 use App\Models\Categorie;
 use App\Models\Checkout;
+use App\Models\Discount;
 use App\Models\Favourite;
 use App\Models\UserRecord;
 use Illuminate\Http\Request;
@@ -104,7 +105,9 @@ class DashboardController extends Controller
     {
         $favourite = Favourite::where('user_id', Auth::user()->id)->count();
         $books = Book::latest()->paginate(9);
-        return view('shop.shop_grid', compact('books','favourite'));
+        $discount_books = Discount::with('book', 'price')->latest()->limit(6)->get();
+        $categories = Categorie::limit(15)->get();
+        return view('shop.shop_grid', compact('books','favourite', 'discount_books', 'categories'));
     }
     public function checkout()
     {

@@ -96,6 +96,10 @@ Route::middleware('auth')->group(function () {
     //buy
     Route::post('/process/checkout', [CartController::class, 'processCheckout'])->name('process.checkout');
     Route::post('/place/order', [CheckoutController::class, 'placeOrder'])->name('place.order');
+
+    //product_details
+    Route::get('/product/details/{id}', [CheckoutController::class,'productDetails'])->name('product.details');
+    Route::get('/ordered', [CheckoutController::class,'orderList'])->name('ordered');
 });
 
 require __DIR__.'/auth.php';

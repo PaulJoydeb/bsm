@@ -47,7 +47,7 @@
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
                 <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
             </ul>
-            <div class="header__cart__price">item: <span>BDT {{total()}}</span></div>
+            <div class="header__cart__price">item: <span>BDT {{ total() }}</span></div>
         </div>
         <div class="humberger__menu__widget">
             <div class="header__top__right__language">
@@ -86,7 +86,7 @@
                         <li><a href="./blog-details.html">Blog Details</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">Blog</a></li>
+                <li><a href="./blog.html">Your Order</a></li>
                 <li><a href="./contact.html">Contact</a></li>
             </ul>
         </nav>
@@ -195,7 +195,7 @@
                                     <li><a href="{{ route('checkout') }}">Check Out</a></li>
                                 </ul>
                             </li>
-                            <li><a href="#">Blog</a></li>
+                            <li><a href="{{ route('ordered') }}">Your Order</a></li>
                             <li><a href="{{ route('contact') }}">Contact</a></li>
                         </ul>
                     </nav>
@@ -208,7 +208,7 @@
                             <li><a href="{{ route('show.cart') }}"><i class="fa fa-shopping-bag"></i>
                                     <span>{{ totalCart() }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">item: <span>BDT {{total()}}</span></div>
+                        <div class="header__cart__price">item: <span>BDT {{ total() }}</span></div>
                     </div>
                 </div>
             </div>
@@ -230,7 +230,10 @@
                             <span>All departments</span>
                         </div>
                         <ul>
-                            <li><a href="#">School</a></li>
+                            @foreach ($categories as $categorie)
+                                <li><a href="{{ $categorie->id }}">{{ $categorie->name }}</a></li>
+                            @endforeach
+                            {{-- <li><a href="#">School</a></li>
                             <li><a href="#">College</a></li>
                             <li><a href="#">University</a></li>
                             <li><a href="#">Medical</a></li>
@@ -240,20 +243,28 @@
                             <li><a href="#">Programming</a></li>
                             <li><a href="#">Historical</a></li>
                             <li><a href="#">Poets</a></li>
-                            <li><a href="#">Adventure stories</a></li>
+                            <li><a href="#">Adventure stories</a></li> --}}
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-9">
                     <div class="hero__search">
                         <div class="hero__search__form">
-                            <form action="#">
+                            {{-- <form action="#">
                                 <select name="categories" id="categories" class="border-0 rounded-0">
                                     <option value="" selected>All Categories</option>
                                     @foreach ($categories as $categorie)
                                         <option value="">{{ $categorie->name }}</option>
                                     @endforeach
                                 </select>
+                                <input type="text" placeholder="What do yo u need?">
+                                <button type="submit" class="site-btn">SEARCH</button>
+                            </form> --}}
+                            <form action="#">
+                                <div class="hero__search__categories">
+                                    All Categories
+                                    <span class="arrow_carrot-down"></span>
+                                </div>
                                 <input type="text" placeholder="What do yo u need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
@@ -263,7 +274,7 @@
                                 <i class="fa fa-phone"></i>
                             </div>
                             <div class="hero__search__phone__text">
-                                <h5>+65 11.188.888</h5>
+                                <h5>+880 0000000000</h5>
                                 <span>support 24/7 time</span>
                             </div>
                         </div>
@@ -283,7 +294,7 @@
     <!-- Hero Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories">
+    {{-- <section class="categories">
         <div class="container">
             <div class="row">
                 <div class="categories__slider owl-carousel">
@@ -326,7 +337,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
@@ -362,7 +373,9 @@
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">{{ $book->title }}</a></h6>
+                                <h6><a
+                                        href="{{ route('product.details', ['id' => $book->id]) }}">{{ $book->title }}</a>
+                                </h6>
                                 <?php
                                 $total_price = $book->price ? $book->price->price : 0;
                                 $discount_percentage = $book->discount ? $book->discount->total_discount : 0;
@@ -391,7 +404,9 @@
                                 </ul>
                             </div>
                             <div class="featured__item__text">
-                                <h6><a href="#">{{ $latest_book->title }}</a></h6>
+                                <h6><a
+                                        href="{{ route('product.details', ['id' => $latest_book->id]) }}">{{ $latest_book->title }}</a>
+                                </h6>
                                 <?php
                                 $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                 $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
@@ -532,7 +547,8 @@
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($latest_books as $latest_book)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
+                                        class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
@@ -554,7 +570,8 @@
                             </div>
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($latest_books as $latest_book)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
+                                        class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
@@ -583,7 +600,8 @@
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($latest_books as $latest_book)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
+                                        class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
@@ -605,7 +623,8 @@
                             </div>
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($latest_books as $latest_book)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
+                                        class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
@@ -634,7 +653,8 @@
                         <div class="latest-product__slider owl-carousel">
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($latest_books as $latest_book)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
+                                        class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
@@ -656,7 +676,8 @@
                             </div>
                             <div class="latest-prdouct__slider__item">
                                 @foreach ($latest_books as $latest_book)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
+                                        class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
@@ -697,7 +718,7 @@
                         </div>
                         <ul>
                             <li>Address: Paltan VIP Road, Dhaka</li>
-                            <li>Phone: +65 11.188.888</li>
+                            <li>Phone: +880 000000000</li>
                             <li>Email: bms@gmail.com</li>
                         </ul>
                     </div>

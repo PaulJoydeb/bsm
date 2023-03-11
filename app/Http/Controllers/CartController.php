@@ -28,7 +28,7 @@ class CartController extends Controller
     public function cartShow()
     {
         $auth_id = Auth::user()->id;
-        $cart_table = Cart::with('book','price','discount')->where('user_id', $auth_id)->where('status', 1);
+        $cart_table = Cart::with('book', 'price', 'discount')->where('user_id', $auth_id)->where('status', 1);
         $carts = $cart_table->paginate(5);
         $total_carts = $cart_table->get();
 
@@ -56,40 +56,43 @@ class CartController extends Controller
     public function processCheckout()
     {
         $auth_id = Auth::user()->id;
-        $total_carts = Cart::with('book','price','discount')->where('user_id', $auth_id)
-        ->where('status', 1)->get();
-        $book_ids = Cart::select(['book_id'])->where('user_id', $auth_id)
-        ->where('status', 1)->get();
-        $subtotal_price = 0;
-        $total_price = 0;
-        foreach ($total_carts as $key => $cart) {
-            $toal_discount = $cart->discount ? $cart->discount->total_discount : 0;
-            $dis_price = $cart->price->price;
-            $new_price = ($dis_price / 100) * $toal_discount;
-            $current = $dis_price - $new_price;
-            $total_price = $total_price + $current;
+        $total_carts = Cart::with('book', 'price', 'discount')->where('user_id', $auth_id)
+            ->where('status', 1)->get();
+        if (count($total_carts) > 0) {
+            $book_ids = Cart::select(['book_id'])->where('user_id', $auth_id)
+                ->where('status', 1)->get();
+            $subtotal_price = 0;
+            $total_price = 0;
+            foreach ($total_carts as $key => $cart) {
+                $toal_discount = $cart->discount ? $cart->discount->total_discount : 0;
+                $dis_price = $cart->price->price;
+                $new_price = ($dis_price / 100) * $toal_discount;
+                $current = $dis_price - $new_price;
+                $total_price = $total_price + $current;
 
-            $subtotal_price = $subtotal_price + $cart->price->price;
+                $subtotal_price = $subtotal_price + $cart->price->price;
 
-            $cart = Cart::findOrFail($cart->id);
-            $cart->status = 0;
-            $cart->save();
-        }
-        $subtotal = $subtotal_price;
-        $total = $total_price;
-        $discount = ($subtotal - $total);
-        try {
-            $checkout = new Checkout();
-            $checkout->user_id = $auth_id;
-            $checkout->book_ids = json_encode($book_ids);
-            $checkout->meta_data = json_encode($total_carts);
-            $checkout->subtotal = $subtotal;
-            $checkout->total = $total;
-            $checkout->discount = $discount;
-            $checkout->status = 1;
-            $checkout->save();
-        } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+                $cart = Cart::findOrFail($cart->id);
+                $cart->status = 0;
+                $cart->save();
+            }
+            $subtotal = $subtotal_price;
+            $total = $total_price;
+            $discount = ($subtotal - $total);
+            try {
+                $checkout = new Checkout();
+                $checkout->user_id = $auth_id;
+                $checkout->book_ids = json_encode($book_ids);
+                $checkout->meta_data = json_encode($total_carts);
+                $checkout->subtotal = $subtotal;
+                $checkout->total = $total;
+                $checkout->discount = $discount;
+                $checkout->status = 1;
+                $checkout->save();
+            } catch (\Exception $ex) {
+                return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            }
+            return redirect()->route('checkout');
         }
         return redirect()->route('dashboard');
     }
