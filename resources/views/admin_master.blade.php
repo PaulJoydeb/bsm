@@ -146,7 +146,7 @@
 
                 <!-- Heading -->
                 <div class="sidebar-heading">
-                    Addons
+                    Handling
                 </div>
 
                 <!-- Nav Item - Pages Collapse Menu -->
@@ -154,40 +154,33 @@
                     <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
                         aria-expanded="true" aria-controls="collapsePages">
                         <i class="fas fa-fw fa-folder"></i>
-                        <span>Pages</span>
+                        <span>Requests {!! pending() > 0 || delivery() > 0
+                            ? '<h6
+                                                    class="badge badge-danger">new</h6>'
+                            : '' !!}</span>
                     </a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
                         data-parent="#accordionSidebar">
                         <div class="bg-white py-2 collapse-inner rounded">
                             <div class="collapse-divider"></div>
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>
+                            <a class="collapse-item" href="{{ route('pending.list') }}">Pending
+                                {!! pending() > 0
+                                    ? '<span
+                                                                    class="badge badge-danger">' .
+                                        pending() .
+                                        '</span>'
+                                    : '' !!}</span></a>
+                            <a class="collapse-item" href="{{ route('delivery.list') }}">Delivery
+                                {!! delivery() > 0
+                                    ? '<span
+                                                                class="badge badge-danger">' .
+                                        delivery() .
+                                        '</span>'
+                                    : '' !!}</a>
+                            <a class="collapse-item" href="{{ route('total.list') }}">Total Sell</a>
                         </div>
                     </div>
                 </li>
-
-                <!-- Nav Item - Charts -->
-                <li class="nav-item">
-                    <a class="nav-link" href="charts.html">
-                        <i class="fas fa-fw fa-chart-area"></i>
-                        <span>Charts</span></a>
-                </li>
-
-                <!-- Nav Item - Tables -->
-                <li class="nav-item">
-                    <a class="nav-link" href="tables.html">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Tables</span></a>
-                </li>
-
-                <!-- Divider -->
-                <hr class="sidebar-divider d-none d-md-block">
-
-                <!-- Sidebar Toggler (Sidebar) -->
-                <div class="text-center d-none d-md-inline">
-                    <button class="rounded-circle border-0" id="sidebarToggle"></button>
-                </div>
-
             </ul>
             <div id="content">
                 @include('admin.admin_topbar')

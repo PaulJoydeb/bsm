@@ -231,7 +231,7 @@
                         </div>
                         <ul>
                             @foreach ($categories as $categorie)
-                                <li><a href="{{ $categorie->id }}">{{ $categorie->name }}</a></li>
+                                <li><a href="{{ route('category.wise', ['id' => $categorie->id]) }}">{{ $categorie->name }}</a></li>
                             @endforeach
                             {{-- <li><a href="#">School</a></li>
                             <li><a href="#">College</a></li>
@@ -257,15 +257,16 @@
                                         <option value="">{{ $categorie->name }}</option>
                                     @endforeach
                                 </select>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" placeholder="What do you need?">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form> --}}
-                            <form action="#">
+                            <form action="{{ route('search') }}" method="POST">
+                                @csrf
                                 <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
                                 </div>
-                                <input type="text" placeholder="What do yo u need?">
+                                <input type="text" name="search" placeholder="Type Book Name...">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>

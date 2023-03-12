@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\BuyBook;
 use App\Models\Cart;
 use App\Models\Favourite;
 use Illuminate\Support\Facades\Auth;
@@ -39,4 +40,16 @@ function total()
         return $total_price;
     }
     return 0;
+}
+
+function pending()
+{
+    $count = BuyBook::where('status', 1)->where('process', 1)->count();
+    return $count;
+}
+
+function delivery()
+{
+    $count = BuyBook::where('status', 1)->where('process', 2)->count();
+    return $count;
 }

@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -100,6 +101,22 @@ Route::middleware('auth')->group(function () {
     //product_details
     Route::get('/product/details/{id}', [CheckoutController::class,'productDetails'])->name('product.details');
     Route::get('/ordered', [CheckoutController::class,'orderList'])->name('ordered');
+
+    //show_products
+    Route::get('/category/wise/{id}',[CategoriesController::class, 'show'])->name('category.wise');
+
+    // book_search
+    Route::post('/search',[BooksController::class, 'search'])->name('search');
+
+    //lists
+    Route::get('/pending',[ProductsController::class, 'pending'])->name('pending.list');
+    Route::get('/accept-pending/{id}',[ProductsController::class, 'acceptPending'])->name('accept.pending');
+    Route::get('/reject-pending/{id}',[ProductsController::class, 'rejectPending'])->name('reject.pending');
+    Route::get('/delivery',[ProductsController::class, 'delivery'])->name('delivery.list');
+    Route::get('/accept-delivery/{id}',[ProductsController::class, 'acceptDelivery'])->name('accept.delivery');
+    Route::get('/reject-delivery/{id}',[ProductsController::class, 'rejectDelivery'])->name('reject.delivery');
+    Route::get('/total',[ProductsController::class, 'total'])->name('total.list');
+
 });
 
 require __DIR__.'/auth.php';

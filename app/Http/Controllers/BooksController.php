@@ -202,4 +202,13 @@ class BooksController extends Controller
         Price::where('book_id', $id)->delete();
         return redirect()->route('show.book');
     }
+
+    public function search(Request $request)
+    {
+        $categories = Categorie::paginate(5);
+        $books = Book::with('author', 'cateogry', 'price', 'discount')
+        ->where('title', 'LIKE', '%' . $request->search . '%')
+        ->paginate(10);
+        return view('category.category_wise', compact('books', 'categories'));
+    }
 }

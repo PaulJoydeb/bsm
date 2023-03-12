@@ -61,7 +61,9 @@ class CategoriesController extends Controller
      */
     public function show($id)
     {
-        //
+        $categories = Categorie::paginate(5);
+        $books = Book::with('author', 'cateogry', 'price', 'discount')->where('category_id', $id)->paginate(10);
+        return view('category.category_wise', compact('books', 'categories'));
     }
 
     public function showCategory()
