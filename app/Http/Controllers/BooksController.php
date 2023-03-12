@@ -190,16 +190,16 @@ class BooksController extends Controller
      */
     public function destroy($id)
     {
-        $book = Book::findOrFail($id);
-        $path_thumb = public_path() . "/storage/" . $book->image;
-        $org_path = str_replace('book_thumbnail', 'book', $book->image);
-        $path_org = public_path() . "/storage/" . $org_path;
-        if (!empty($path_thumb) && !empty($path_org)) {
-            unlink($path_thumb);
-            unlink($path_org);
-        }
-        $book->delete();
-        Price::where('book_id', $id)->delete();
+        // $book = Book::findOrFail($id);
+        // $path_thumb = public_path() . "/storage/" . $book->image;
+        // $org_path = str_replace('book_thumbnail', 'book', $book->image);
+        // $path_org = public_path() . "/storage/" . $org_path;
+        // if (!empty($path_thumb) && !empty($path_org)) {
+        //     unlink($path_thumb);
+        //     unlink($path_org);
+        // }
+        // $book->delete();
+        // Price::where('book_id', $id)->delete();
         return redirect()->route('show.book');
     }
 
