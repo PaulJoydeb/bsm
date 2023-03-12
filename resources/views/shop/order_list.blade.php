@@ -45,7 +45,7 @@
 
                                         <td>
                                             @foreach ($books as $book)
-                                                <span>{{ $book->title }}<br> </span>
+                                                <span class="badge badge-secondary">{{ $book->title }} </span>
                                             @endforeach
                                         </td>
 
