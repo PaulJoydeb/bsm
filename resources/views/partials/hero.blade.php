@@ -55,7 +55,7 @@
                         <span>BOOKS</span>
                         <h2>So many books,<br />so little time.</h2>
                         <p>Free Pickup and Delivery Available</p>
-                        <a href="#" class="primary-btn">SHOP NOW</a>
+                        <a href="{{ route('shop-grid') }}" class="primary-btn">SHOP NOW</a>
                     </div>
                 </div>
             </div>
