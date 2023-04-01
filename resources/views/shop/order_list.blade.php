@@ -50,16 +50,29 @@
                                         </td>
 
                                         <?php
+                                       $c_status = '';
                                         if ($order_list->process == 1) {
                                             $status = 'Requested';
+                                            if ($order_list->status == 0) {
+                                                $c_status = 1;
+                                            }
                                         } elseif ($order_list->process == 2) {
                                             $status = 'Processing';
+                                            if ($order_list->status == 0) {
+                                                $c_status = 1;
+                                            }
                                         } elseif ($order_list->process == 3) {
                                             $status = 'Delivered';
                                         }
                                         ?>
 
-                                        <td>{{ $status }}</td>
+                                        <td>{{ $status }} 
+                                        <?php   
+                                            if ($c_status == 1) {   ?>
+                                                <span class="badge badge-danger"> Rejected </span>
+                                                <?php }
+                                            ?>
+                                             </td>
                                         <td>{{ $order_list->subtotal }}</td>
                                         <td>{{ $order_list->total }}</td>
                                     </tr>
