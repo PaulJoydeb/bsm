@@ -22,17 +22,15 @@ class DashboardController extends Controller
     public function index()
     {
         $categories = Categorie::get();
-        $books = Book::with('price', 'discount', 'author')->limit(4)->get();
-        $latest_books = Book::with('price', 'discount', 'author')->limit(4)->latest()->get();
-        return view('welcome', compact('categories', 'books', 'latest_books'));
+        $books = Book::with('price', 'discount', 'author')->limit(16)->get();
+        return view('welcome', compact('categories', 'books'));
     }
 
     public function home()
     {
         $categories = Categorie::get();
-        $books = Book::with('price', 'discount', 'author')->limit(4)->get();
-        $latest_books = Book::with('price', 'discount', 'author')->limit(4)->latest()->get();
-        return view('welcome', compact('categories', 'books', 'latest_books'));
+        $books = Book::with('price', 'discount', 'author')->limit(16)->get();
+        return view('welcome', compact('categories', 'books'));
     }
 
     /**

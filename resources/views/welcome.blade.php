@@ -50,15 +50,6 @@
             <div class="header__cart__price">item: <span>BDT {{ total() }}</span></div>
         </div>
         <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">English</a></li>
-                    <li><a href="#">Bangla</a></li>
-                </ul>
-            </div>
             @if (Route::has('login'))
                 @auth
                 @else
@@ -91,16 +82,9 @@
             </ul>
         </nav>
         <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
         <div class="humberger__menu__contact">
             <ul>
                 <li><i class="fa fa-envelope"></i> bms@gmail.com</li>
-                <li>Free Shipping for all Order of $99</li>
             </ul>
         </div>
     </div>
@@ -115,28 +99,11 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> bms@gmail.com</li>
-                                <li>Shipping for all Order of <code>৫৫৳</code></li>
                             </ul>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-6">
                         <div class="header__top__right">
-                            <div class="header__top__right__social">
-                                <a href="#"><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-linkedin"></i></a>
-                                <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                            </div>
-                            <div class="header__top__right__language">
-                                <img src="img/language.png" alt="">
-                                <div>English</div>
-                                <span class="arrow_carrot-down"></span>
-                                <ul>
-                                    <li><a href="#">English</a></li>
-                                    <li><a href="#">Bangla</a></li>
-                                </ul>
-                            </div>
-
                             @if (Route::has('login'))
                                 @auth
                                     <div class="header__top__right__user">
@@ -351,7 +318,7 @@
                     <div class="section-title">
                         <h2>Featured Books</h2>
                     </div>
-                    <div class="featured__controls">
+                    {{-- <div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <li data-filter=".oranges">Pre-Order</li>
@@ -359,7 +326,7 @@
                             <li data-filter=".vegetables">Admission Carnival</li>
                             <li data-filter=".fastfood">Novel</li>
                         </ul>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
             <div class="row featured__filter">
@@ -393,136 +360,13 @@
                         </div>
                     </div>
                 @endforeach
-
-                @foreach ($latest_books as $latest_book)
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                        <div class="featured__item">
-                            <div class="featured__item__pic set-bg" data-setbg="storage/{{ $latest_book->image }}">
-                                <ul class="featured__item__pic__hover">
-                                    <li><a href="{{ route('heart', ['id' => $latest_book->id]) }}"><i
-                                                class="fa fa-heart"></i></a></li>
-                                    {{-- <li><a href="#"><i class="fa fa-retweet"></i></a></li> --}}
-                                    <li><a href="{{ route('cart.store', ['id' => $latest_book->id]) }}"><i
-                                                class="fa fa-shopping-cart"></i></a></li>
-                                </ul>
-                            </div>
-                            <div class="featured__item__text">
-                                <h6><a
-                                        href="{{ route('product.details', ['id' => $latest_book->id]) }}">{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</a>
-                                </h6>
-                                <?php
-                                $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                $l_current = $l_total_price - $l_new_price;
-                                $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                ?>
-                                <h5>{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                    ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                    : $l_price !!}BDT</h5>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-
-                {{--
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-6.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-7.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-8.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div> --}}
             </div>
         </div>
     </section>
     <!-- Featured Section End -->
 
     <!-- Banner Begin -->
-    <div class="banner">
+    {{-- <div class="banner">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
@@ -537,178 +381,8 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Banner End -->
-
-    <!-- Latest Product Section Begin -->
-    <section class="latest-product spad">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Latest Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                @foreach ($latest_books as $latest_book)
-                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
-                                        class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="storage/{{ $latest_book->image }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
-                                            <?php
-                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                            $l_current = $l_total_price - $l_new_price;
-                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            ?>
-                                            <span>{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}BDT</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                @foreach ($latest_books as $latest_book)
-                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
-                                        class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="storage/{{ $latest_book->image }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
-                                            <?php
-                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                            $l_current = $l_total_price - $l_new_price;
-                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            ?>
-                                            <span>{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}BDT</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Top Rated Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                @foreach ($latest_books as $latest_book)
-                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
-                                        class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="storage/{{ $latest_book->image }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
-                                            <?php
-                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                            $l_current = $l_total_price - $l_new_price;
-                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            ?>
-                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                @foreach ($latest_books as $latest_book)
-                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
-                                        class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="storage/{{ $latest_book->image }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
-                                            <?php
-                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                            $l_current = $l_total_price - $l_new_price;
-                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            ?>
-                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="latest-product__text">
-                        <h4>Review Products</h4>
-                        <div class="latest-product__slider owl-carousel">
-                            <div class="latest-prdouct__slider__item">
-                                @foreach ($latest_books as $latest_book)
-                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
-                                        class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="storage/{{ $latest_book->image }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
-                                            <?php
-                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                            $l_current = $l_total_price - $l_new_price;
-                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            ?>
-                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                            <div class="latest-prdouct__slider__item">
-                                @foreach ($latest_books as $latest_book)
-                                    <a href="{{ route('product.details', ['id' => $latest_book->id]) }}"
-                                        class="latest-product__item">
-                                        <div class="latest-product__item__pic">
-                                            <img src="storage/{{ $latest_book->image }}" alt="">
-                                        </div>
-                                        <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
-                                            <?php
-                                            $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
-                                            $l_new_price = ($l_total_price / 100) * $l_discount_percentage;
-                                            $l_current = $l_total_price - $l_new_price;
-                                            $l_price = $latest_book->price ? $latest_book->price->price : 0;
-                                            ?>
-                                            <span>BDT{!! !empty($l_discount_percentage) && $l_discount_percentage > 0
-                                                ? '<s class="text-danger">' . $l_price . '</s> ' . $l_current
-                                                : $l_price !!}</span>
-                                        </div>
-                                    </a>
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <!-- Latest Product Section End -->
-
-
     <!-- Footer Section Begin -->
     <footer class="footer spad">
         <div class="container">
