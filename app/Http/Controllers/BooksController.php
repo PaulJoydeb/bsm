@@ -208,6 +208,9 @@ class BooksController extends Controller
         $categories = Categorie::paginate(5);
         $books = Book::with('author', 'cateogry', 'price', 'discount')
         ->where('title', 'LIKE', '%' . $request->search . '%')
+        ->orWhereHas('author', function($query) use ($request){
+            $query->where('name', 'LIKE', '%' . $request['search'] . '%');
+        })
         ->paginate(10);
         return view('category.category_wise', compact('books', 'categories'));
     }
