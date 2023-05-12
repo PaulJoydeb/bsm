@@ -264,11 +264,11 @@
                             </form> --}}
                             <form action="{{ route('search') }}" method="POST">
                                 @csrf
-                                <div class="hero__search__categories">
+                                {{-- <div class="hero__search__categories">
                                     All Categories
                                     <span class="arrow_carrot-down"></span>
-                                </div>
-                                <input type="text" name="search" placeholder="Type Book Name...">
+                                </div> --}}
+                                <input type="text" name="search" placeholder="Type Book/Author Name...">
                                 <button type="submit" class="site-btn">SEARCH</button>
                             </form>
                         </div>
@@ -377,7 +377,7 @@
                             </div>
                             <div class="featured__item__text">
                                 <h6><a
-                                        href="{{ route('product.details', ['id' => $book->id]) }}">{{ $book->title }}</a>
+                                        href="{{ route('product.details', ['id' => $book->id]) }}">{{ $book->title }} • {{ $book->author ? $book->author->name : '' }}</a>
                                 </h6>
                                 <?php
                                 $total_price = $book->price ? $book->price->price : 0;
@@ -408,7 +408,7 @@
                             </div>
                             <div class="featured__item__text">
                                 <h6><a
-                                        href="{{ route('product.details', ['id' => $latest_book->id]) }}">{{ $latest_book->title }}</a>
+                                        href="{{ route('product.details', ['id' => $latest_book->id]) }}">{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</a>
                                 </h6>
                                 <?php
                                 $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
@@ -556,7 +556,7 @@
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }}</h6>
+                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
                                             <?php
                                             $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                             $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
@@ -579,7 +579,7 @@
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }}</h6>
+                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
                                             <?php
                                             $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                             $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
@@ -609,7 +609,7 @@
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }}</h6>
+                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
                                             <?php
                                             $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                             $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
@@ -632,7 +632,7 @@
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }}</h6>
+                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
                                             <?php
                                             $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                             $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
@@ -662,7 +662,7 @@
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }}</h6>
+                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
                                             <?php
                                             $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                             $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;
@@ -685,7 +685,7 @@
                                             <img src="storage/{{ $latest_book->image }}" alt="">
                                         </div>
                                         <div class="latest-product__item__text">
-                                            <h6>{{ $latest_book->title }}</h6>
+                                            <h6>{{ $latest_book->title }} • {{ $book->author ? $book->author->name : '' }}</h6>
                                             <?php
                                             $l_total_price = $latest_book->price ? $latest_book->price->price : 0;
                                             $l_discount_percentage = $latest_book->discount ? $latest_book->discount->total_discount : 0;

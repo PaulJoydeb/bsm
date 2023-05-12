@@ -22,16 +22,16 @@ class DashboardController extends Controller
     public function index()
     {
         $categories = Categorie::get();
-        $books = Book::with('price', 'discount')->limit(4)->get();
-        $latest_books = Book::with('price', 'discount')->limit(4)->latest()->get();
+        $books = Book::with('price', 'discount', 'author')->limit(4)->get();
+        $latest_books = Book::with('price', 'discount', 'author')->limit(4)->latest()->get();
         return view('welcome', compact('categories', 'books', 'latest_books'));
     }
 
     public function home()
     {
         $categories = Categorie::get();
-        $books = Book::with('price', 'discount')->limit(4)->get();
-        $latest_books = Book::with('price', 'discount')->limit(4)->latest()->get();
+        $books = Book::with('price', 'discount', 'author')->limit(4)->get();
+        $latest_books = Book::with('price', 'discount', 'author')->limit(4)->latest()->get();
         return view('welcome', compact('categories', 'books', 'latest_books'));
     }
 
@@ -104,7 +104,7 @@ class DashboardController extends Controller
     public function shopGrid()
     {
         $favourite = Favourite::where('user_id', Auth::user()->id)->count();
-        $books = Book::latest()->paginate(9);
+        $books = Book::with('author')->latest()->paginate(9);
         $discount_books = Discount::with('book', 'price')->latest()->limit(6)->get();
         $categories = Categorie::limit(15)->get();
         return view('shop.shop_grid', compact('books','favourite', 'discount_books', 'categories'));

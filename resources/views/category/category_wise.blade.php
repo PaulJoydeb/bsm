@@ -64,7 +64,7 @@
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
-                                        <h6><a href="{{route('product.details', ['id' => $book->id])}}">{{ $book->title }}</a></h6>
+                                        <h6><a href="{{route('product.details', ['id' => $book->id])}}">{{ $book->title }} • {{ $book->author ? $book->author->name : '' }}</a></h6>
                                         <?php
                                         $total_price = $book->price ? $book->price->price : 0;
                                         $discount_percentage = $book->discount ? $book->discount->total_discount : 0;
