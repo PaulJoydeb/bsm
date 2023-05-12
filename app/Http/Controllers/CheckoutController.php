@@ -20,8 +20,7 @@ class CheckoutController extends Controller
             'town_or_city' => 'required',
             'postcode_or_zip' => 'required',
             'phone' => 'required',
-            'email' => 'required',
-            'order_notes' => 'required'
+            'email' => 'required'
         ]);
 
         $billing_details = json_encode($request->except('_token'));
