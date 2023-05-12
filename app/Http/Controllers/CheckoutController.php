@@ -13,6 +13,17 @@ class CheckoutController extends Controller
 {
     public function placeOrder(Request $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'country' => 'required',
+            'primary_address' => 'required',
+            'town_or_city' => 'required',
+            'postcode_or_zip' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+            'order_notes' => 'required'
+        ]);
+
         $billing_details = json_encode($request->except('_token'));
         $auth_id = Auth::user()->id;
         $checkouts = Checkout::where('user_id', $auth_id)->where('status', 1)->get();

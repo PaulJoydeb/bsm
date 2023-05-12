@@ -26,6 +26,15 @@
                     <h6><span class="icon_tag_alt"></span> Have a coupon? <a href="#">Click here</a> to enter your
                         code
                     </h6>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 </div>
             </div>
             <div class="checkout__form">
@@ -50,32 +59,38 @@
                             </div>
                             <div class="checkout__input">
                                 <p>Country<span>*</span></p>
-                                <input type="text" name="country" value="{{$user_record ? $user_record->country : ""}}">
+                                <input type="text" name="country"
+                                    value="{{ $user_record ? $user_record->country : '' }}">
                             </div>
                             <div class="checkout__input">
                                 <p>Address<span>*</span></p>
                                 <input type="text" placeholder="Street Address" class="checkout__input__add"
-                                    name="primary_address" value="{{$user_record ? $user_record->primary_address : ""}}">
+                                    name="primary_address" value="{{ $user_record ? $user_record->primary_address : '' }}">
                                 <input type="text" placeholder="Apartment, suite, unite ect (optinal)"
-                                    name="secondary_address" value="{{$user_record ? $user_record->secondary_address : ""}}">
+                                    name="secondary_address"
+                                    value="{{ $user_record ? $user_record->secondary_address : '' }}">
                             </div>
                             <div class="checkout__input">
                                 <p>Town/City<span>*</span></p>
-                                <input type="text" name="town_or_city" value="{{$user_record ? $user_record->town_or_city : ""}}">
+                                <input type="text" name="town_or_city"
+                                    value="{{ $user_record ? $user_record->town_or_city : '' }}">
                             </div>
                             <div class="checkout__input">
                                 <p>Country/State<span>*</span></p>
-                                <input type="text" name="country_or_state" value="{{$user_record ? $user_record->country_or_state : ""}}">
+                                <input type="text" name="country_or_state"
+                                    value="{{ $user_record ? $user_record->country_or_state : '' }}">
                             </div>
                             <div class="checkout__input">
                                 <p>Postcode/ZIP<span>*</span></p>
-                                <input type="text" name="postcode_or_zip" value="{{$user_record ? $user_record->postcode_or_zip : ""}}">
+                                <input type="text" name="postcode_or_zip"
+                                    value="{{ $user_record ? $user_record->postcode_or_zip : '' }}">
                             </div>
                             <div class="row">
                                 <div class="col-lg-6">
                                     <div class="checkout__input">
                                         <p>Phone<span>*</span></p>
-                                        <input type="text" name="phone" value="{{$user_record ? $user_record->phone : ""}}">
+                                        <input type="text" name="phone"
+                                            value="{{ $user_record ? $user_record->phone : '' }}">
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
@@ -106,7 +121,7 @@
                                 </label>
                             </div> --}}
                             <div class="checkout__input">
-                                <p>Order notes<span>*</span></p>
+                                <p>Order notes</p>
                                 <input type="text" placeholder="Notes about your order, e.g. special notes for delivery."
                                     name="order_notes">
                             </div>
