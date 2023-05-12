@@ -212,6 +212,6 @@ class BooksController extends Controller
             $query->where('name', 'LIKE', '%' . $request['search'] . '%');
         })
         ->paginate(10);
-        return view('category.category_wise', compact('books', 'categories'));
+        return view('search.index', compact('books', 'categories'));
     }
 }
