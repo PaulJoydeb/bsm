@@ -27,6 +27,7 @@
                                 <th>Book List (Title)</th>
                                 <th>Sub Total</th>
                                 <th>Total Price</th>
+                                <th>User Name</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -45,6 +46,7 @@
                                     </td>
                                     <td>{{ $buy_book->subtotal }}</td>
                                     <td>{{ $buy_book->total }}</td>
+                                    <td>{{ $buy_book->user ? $buy_book->user->name : ''}}</td>
                                     <td>
                                         <a class="btn btn-success "
                                             href="{{ route('accept.pending', ['id' => $buy_book->id]) }}">Accept</a>

@@ -27,6 +27,7 @@
                                 <th>Book List (Title)</th>
                                 <th>Sub Total</th>
                                 <th>Total Price</th>
+                                <th>User Name</th>
                             </tr>
                         </thead>
 
@@ -44,6 +45,7 @@
                                     </td>
                                     <td>{{ $buy_book->subtotal }}</td>
                                     <td>{{ $buy_book->total }}</td>
+                                    <td>{{ $buy_book->user ? $buy_book->user->name : ''}}</td>
                                 </tr>
                             @endforeach
                         </tbody>

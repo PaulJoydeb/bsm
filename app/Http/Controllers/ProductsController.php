@@ -9,7 +9,7 @@ class ProductsController extends Controller
 {
     public function pending()
     {
-        $buy_books = BuyBook::where('status', 1)->where('process', 1)->paginate(10);
+        $buy_books = BuyBook::with('user')->where('status', 1)->where('process', 1)->paginate(10);
         return view('products.pending', compact('buy_books'));
     }
 
@@ -31,7 +31,7 @@ class ProductsController extends Controller
 
     public function delivery()
     {
-        $buy_books = BuyBook::where('status', 1)->where('process', 2)->paginate(10);
+        $buy_books = BuyBook::with('user')->where('status', 1)->where('process', 2)->paginate(10);
         return view('products.delivery',compact('buy_books'));
     }
 
@@ -53,7 +53,7 @@ class ProductsController extends Controller
 
     public function total()
     {
-        $buy_books = BuyBook::where('status', 1)->where('process', 3)->paginate(10);
+        $buy_books = BuyBook::with('user')->where('status', 1)->where('process', 3)->paginate(10);
         return view('products.total',compact('buy_books'));
     }
 }
