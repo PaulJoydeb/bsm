@@ -90,7 +90,7 @@ class CheckoutController extends Controller
     public function orderList()
     {
         $auth_id = Auth::user()->id;
-        $order_lists = BuyBook::where('user_id', $auth_id)->paginate(5);
+        $order_lists = BuyBook::where('user_id', $auth_id)->orderBy('id', 'DESC')->paginate(5);
         return view('shop.order_list', compact('order_lists'));
     }
 }
