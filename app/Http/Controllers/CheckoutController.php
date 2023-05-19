@@ -70,7 +70,7 @@ class CheckoutController extends Controller
                 $buy->json_book_names = json_encode($book_name_list);
                 $buy->billing_details = $billing_details;
                 $buy->save();
-                session()->flash('message', 'Successfully Placed Order. Thank Your!');
+                session()->flash('message', 'Successfully Placed Order. Thank You!');
             } catch (\Exception $ex) {
                 return Redirect::back()->withErrors('Something Went Wrong!');
             }
