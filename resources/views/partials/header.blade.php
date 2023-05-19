@@ -37,6 +37,7 @@
             </div>
         </div>
     </div>
+    @include('alert')
     <div class="container">
         <div class="row">
             <div class="col-lg-3">

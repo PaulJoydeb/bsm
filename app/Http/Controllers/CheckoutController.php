@@ -70,8 +70,9 @@ class CheckoutController extends Controller
                 $buy->json_book_names = json_encode($book_name_list);
                 $buy->billing_details = $billing_details;
                 $buy->save();
+                session()->flash('message', 'Successfully Placed Order. Thank Your!');
             } catch (\Exception $ex) {
-                return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Something wrong!']);
+                return Redirect::back()->withErrors('Something Went Wrong!');
             }
         } else {
             return Redirect::back()->withErrors(['msg' => 'Order Not Found!']);   

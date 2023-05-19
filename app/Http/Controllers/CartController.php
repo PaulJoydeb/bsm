@@ -19,8 +19,9 @@ class CartController extends Controller
             $cart->quantity = 1;
             $cart->status = 1;
             $cart->save();
+            session()->flash('message', 'Successfully Add to Cart.');
         } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('dashboard');
     }
@@ -50,6 +51,7 @@ class CartController extends Controller
     public function delete($id)
     {
         Cart::findOrFail($id)->delete();
+        session()->flash('message', 'Successfully Cart Deleted.');
         return redirect()->route('show.cart');
     }
 
@@ -89,10 +91,13 @@ class CartController extends Controller
                 $checkout->discount = $discount;
                 $checkout->status = 1;
                 $checkout->save();
+                session()->flash('message', 'Successfully Processed.');
             } catch (\Exception $ex) {
-                return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+                return Redirect::back()->withErrors('Something Went Wrong!');
             }
             return redirect()->route('checkout');
+        } else {
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('dashboard');
     }

@@ -50,7 +50,7 @@ class AuthorController extends Controller
             $author->about = $request->about;
             $author->save();
         } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('show.author' );
     }
@@ -111,7 +111,7 @@ class AuthorController extends Controller
             $author->about = $request->about;
             $author->save();
         } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('show.author' );
     }

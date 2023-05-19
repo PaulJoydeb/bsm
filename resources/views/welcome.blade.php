@@ -143,6 +143,7 @@
                 </div>
             </div>
         </div>
+        @include('alert')
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -419,8 +420,9 @@
                     <div class="footer__widget">
                         <h6>Join Our Newsletter Now</h6>
                         <p>Get E-mail updates about our latest shop and special offers.</p>
-                        <form action="#">
-                            <input type="text" placeholder="Enter your mail">
+                        <form action="{{ route('newsletter') }}" method="POST">
+                            @csrf
+                            <input type="email" name="email" placeholder="Enter your mail">
                             <button type="submit" class="site-btn">Subscribe</button>
                         </form>
                     </div>

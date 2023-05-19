@@ -76,7 +76,7 @@ class BooksController extends Controller
             $price->save();
 
         } catch (\Throwable $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('show.book');
     }
@@ -173,11 +173,8 @@ class BooksController extends Controller
                 $price->currency = 'BDT';
                 $price->save();
             }
-
-            
-
         } catch (\Throwable $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('show.book');
     }

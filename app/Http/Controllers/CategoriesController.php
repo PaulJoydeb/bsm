@@ -47,8 +47,9 @@ class CategoriesController extends Controller
             $category->type = $request->type;
             $category->description = $request->description;
             $category->save();
+            session()->flash('message', 'Successfully Saved.');
         } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('show.category');
     }
@@ -103,8 +104,9 @@ class CategoriesController extends Controller
             $category->type = $request->type;
             $category->description = $request->description;
             $category->save();
+            session()->flash('message', 'Successfully Updated.');
         } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('show.category' );
     }

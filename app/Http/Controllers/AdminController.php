@@ -12,9 +12,9 @@ class AdminController extends Controller
     {
         $total_books = Book::count();
         $buy_book = new BuyBook();
-        $buy_books = $buy_book->where('process', 3)->count();;
-        $deliver_pending = $buy_book->where('process', 2)->count();;
-        $pending_request = $buy_book->where('process', 1)->count();
+        $buy_books = $buy_book->where('process', 3)->where('status', 1)->count();;
+        $deliver_pending = $buy_book->where('process', 2)->where('status', 1)->count();;
+        $pending_request = $buy_book->where('process', 1)->where('status', 1)->count();
         return view('admin', compact('total_books', 'buy_books', 'deliver_pending', 'pending_request'));
     }
 }

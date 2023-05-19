@@ -9,6 +9,7 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DiscountController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -117,6 +118,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/reject-delivery/{id}',[ProductsController::class, 'rejectDelivery'])->name('reject.delivery');
     Route::get('/total',[ProductsController::class, 'total'])->name('total.list');
 
+    //newsletter
+    Route::post('/newsletter',[NoticeController::class, 'store'])->name('newsletter');
 });
 
 require __DIR__.'/auth.php';

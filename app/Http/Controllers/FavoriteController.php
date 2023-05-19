@@ -22,9 +22,10 @@ class FavoriteController extends Controller
                 $favourite->status = 1;
                 $favourite->session = $session_ip;
                 $favourite->save();
+                session()->flash('message', 'Successfully Saved.');
             }
         } catch (\Exception $ex) {
-            return Redirect::back()->withErrors(['status' => 'error', 'msg' => 'Somethin wrong!']);
+            return Redirect::back()->withErrors('Something Went Wrong!');
         }
         return redirect()->route('dashboard');
     }
@@ -39,6 +40,7 @@ class FavoriteController extends Controller
     public function delete($id)
     {
         Favourite::findOrFail($id)->delete();
+        session()->flash('message', 'Successfully Favorite Deleted.');
         return redirect()->route('show.favourite');
     }
 }
