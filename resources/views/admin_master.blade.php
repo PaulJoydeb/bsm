@@ -25,9 +25,9 @@
         <link rel="stylesheet" href="{{ asset('css/owl.carousel.min.css') }}" type="text/css">
         <link rel="stylesheet" href="{{ asset('css/slicknav.min.css') }}" type="text/css">
 
-        <!-- Scripts -->
+        {{-- <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
-        <script src="{{ asset('js/management.js') }}" defer></script>
+        <script src="{{ asset('js/management.js') }}" defer></script> --}}
 
 
         <!-- Custom styles for this template-->
@@ -156,7 +156,7 @@
                         <i class="fas fa-fw fa-folder"></i>
                         <span>Requests {!! pending() > 0 || delivery() > 0
                             ? '<h6
-                                                    class="badge badge-danger">new</h6>'
+                                                                                                    class="badge badge-danger">new</h6>'
                             : '' !!}</span>
                     </a>
                     <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
@@ -166,14 +166,14 @@
                             <a class="collapse-item" href="{{ route('pending.list') }}">Pending
                                 {!! pending() > 0
                                     ? '<span
-                                                                    class="badge badge-danger">' .
+                                                                                                                                    class="badge badge-danger">' .
                                         pending() .
                                         '</span>'
                                     : '' !!}</span></a>
                             <a class="collapse-item" href="{{ route('delivery.list') }}">Delivery
                                 {!! delivery() > 0
                                     ? '<span
-                                                                class="badge badge-danger">' .
+                                                                                                                                class="badge badge-danger">' .
                                         delivery() .
                                         '</span>'
                                     : '' !!}</a>
@@ -232,6 +232,18 @@
         <script src="{{ asset('js/main.js') }}"></script>
 
     </body>
+
+    <script lang='javascript'>
+        $(document).ready(function() {
+            $('#printPage').click(function() {
+                var divToPrint = document.getElementById("reportData");
+                newWin = window.open("");
+                newWin.document.write(divToPrint.outerHTML);
+                newWin.print();
+                newWin.close();
+            });
+        });
+    </script>
 
     </html>
 @endif

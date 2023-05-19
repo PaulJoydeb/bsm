@@ -9,8 +9,48 @@
             <!-- Page Heading -->
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">DASHBOARD</h1>
-                <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
+                <a href="#" data-toggle="modal" data-target="#reportModal"
+                    class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i
                         class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
+            </div>
+
+            <!-- Report Modal-->
+            <div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Report</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-bordered" border="1" cellpadding="3" style="text-align: center; margin-left: auto; margin-right: auto;" id="reportData">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Total Books</th>
+                                        <th scope="col">Total Sell</th>
+                                        <th scope="col">Delivery Pending</th>
+                                        <th scope="col">Pending Request</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ $total_books }}</td>
+                                        <td>{{ $buy_books }}</td>
+                                        <td>{{ $deliver_pending }}</td>
+                                        <td>{{ $pending_request }}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <button class="btn btn-primary" type="button" data-dismiss="modal" id="printPage"><i class="fa fa-print"></i> Print</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <!-- Content Row -->
@@ -62,7 +102,8 @@
                                     </div>
                                     <div class="row no-gutters align-items-center">
                                         <div class="col-auto">
-                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{$deliver_pending}}</div>
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{ $deliver_pending }}
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
