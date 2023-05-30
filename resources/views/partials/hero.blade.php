@@ -5,7 +5,7 @@
                 <div class="hero__categories">
                     <div class="hero__categories__all">
                         <i class="fa fa-bars"></i>
-                        <span>All departments</span>
+                        <span>All Categories</span>
                     </div>
                     <ul>
                         <li><a href="#">School</a></li>
@@ -45,7 +45,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+00 11.188.888</h5>
+                            <h5>+8801900000000 </h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>

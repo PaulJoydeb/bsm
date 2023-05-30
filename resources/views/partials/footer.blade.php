@@ -9,7 +9,7 @@
                     </div>
                     <ul>
                         <li>Address: Paltan VIP Road, Dhaka</li>
-                        <li>Phone: +65 11.188.888</li>
+                        <li>Phone: +8801900000000 </li>
                         <li>Email: bms@gmail.com</li>
                     </ul>
                 </div>

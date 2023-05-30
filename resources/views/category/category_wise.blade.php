@@ -24,7 +24,7 @@
                 <div class="col-lg-3 col-md-5">
                     <div class="sidebar">
                         <div class="sidebar__item">
-                            <h4>Department</h4>
+                            <h4>Category </h4>
                             <ul>
                                 @foreach ($categories as $category)
                                     <li><a href="{{ route('category.wise', ['id' => $category->id]) }}">{{ $category->name }}</a></li>
